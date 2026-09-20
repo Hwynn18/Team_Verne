@@ -1,0 +1,12 @@
+.frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--color-primary-soft);
+}
+
+.placeholder {
+  background: linear-gradient(135deg, var(--color-primary-soft), var(--color-primary));
+}
+
+.image { object-fit: cover; }

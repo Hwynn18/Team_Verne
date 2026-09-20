@@ -1,6 +1,28 @@
+// 이미지 최적화를 허용할 Supabase 호스트를 .env.local 의 SUPABASE_URL 에서 가져온다
+function getSupabaseHost() {
+  const raw = process.env.SUPABASE_URL;
+  if (!raw) {
+    throw new Error("SUPABASE_URL is required in next.config.mjs (image host allowlist)");
+  }
+  const url = new URL(raw);
+  if (url.protocol !== "https:") {
+    throw new Error(`SUPABASE_URL must use https: ${raw}`);
+  }
+  return url.hostname;
+}
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* config options here */
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: getSupabaseHost(),
+        // features/projects/coverUrl.js 의 BUCKET 과 같은 값이어야 함
+        pathname: "/storage/v1/object/public/project-covers/**",
+      },
+    ],
+  },
 };
 
 export default nextConfig;
