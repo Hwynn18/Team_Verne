@@ -1,12 +1,5 @@
-import Image from "next/image";
-import { siteConfig } from "@/lib/config/site";
+import HomePage from "@/features/home/HomePage";
 
-export default function HomePage() {
-  const { name, logo } = siteConfig;
-  return (
-    <main className="placeholder">
-      <Image src={logo.src} alt={logo.alt} width={logo.width} height={logo.height} priority />
-      <h1>{name}</h1>
-    </main>
-  );
+export default function Page() {
+  return <HomePage />;
 }

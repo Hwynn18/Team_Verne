@@ -5,6 +5,8 @@ import styles from "./Sidebar.module.css";
 
 // Sidebar.module.css / globals.css 의 768px 브레이크포인트와 같은 값이어야 함
 const DESKTOP_QUERY = "(min-width: 769px)";
+// app/layout.js 의 본문 래퍼 클래스와 같은 값이어야 함
+const CONTENT_SELECTOR = ".app-content";
 const FOCUSABLE = "a[href], button:not([disabled])";
 
 // 사이드바 안의 보이는 포커스 대상 + 햄버거(X) 버튼. 순서: 사이드바 위→아래, 마지막이 버튼
@@ -22,8 +24,13 @@ export default function SidebarShell({ openLabel, closeLabel, children }) {
     if (!open) return undefined;
     const sidebar = sidebarRef.current;
     const menuButton = buttonRef.current;
+    const content = document.querySelector(CONTENT_SELECTOR);
+    if (!content) {
+      console.error(`[SidebarShell] ${CONTENT_SELECTOR} not found: background will not be inert`);
+    }
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    content?.setAttribute("inert", "");
     getFocusableItems(sidebar, menuButton)[0].focus();
 
     function handleKeyDown(event) {
@@ -45,6 +52,7 @@ export default function SidebarShell({ openLabel, closeLabel, children }) {
 
     return () => {
       document.body.style.overflow = previousOverflow;
+      content?.removeAttribute("inert");
       document.removeEventListener("keydown", handleKeyDown);
       menuButton.focus();
     };
