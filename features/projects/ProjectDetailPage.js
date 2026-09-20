@@ -4,7 +4,7 @@ import { getDictionary } from "@/lib/i18n/server";
 import { pickLocalized } from "@/lib/i18n/localize";
 import { getAllProjects } from "./projectQueries";
 import { normalizeProjects } from "./normalizeProjects";
-import { isValidSlug } from "./projectSlug";
+import { isValidSlug } from "@/lib/validation/slug";
 import { getCoverUrl } from "./coverUrl";
 import CoverImage from "./CoverImage";
 import StatusBadge from "./StatusBadge";

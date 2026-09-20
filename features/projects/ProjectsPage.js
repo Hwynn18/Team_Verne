@@ -1,5 +1,6 @@
 import { getDictionary } from "@/lib/i18n/server";
-import { getAllProjects, getDepartments } from "./projectQueries";
+import { getAllProjects } from "./projectQueries";
+import { getDepartments } from "@/lib/data/departmentQueries";
 import { normalizeProjects } from "./normalizeProjects";
 import { parseFilters, applyFilters } from "./projectFilters";
 import ProjectFilters from "./ProjectFilters";
