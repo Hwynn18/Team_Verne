@@ -2,7 +2,7 @@ import Link from "next/link";
 import { projectHref } from "@/features/projects/projectHref";
 import { getCoverUrl } from "@/features/projects/coverUrl";
 import CoverImage from "@/features/projects/CoverImage";
-import { pickLocalized } from "./localize";
+import { pickLocalized } from "@/lib/i18n/localize";
 import SectionMessage from "./SectionMessage";
 import styles from "./Home.module.css";
 

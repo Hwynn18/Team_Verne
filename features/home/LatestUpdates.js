@@ -1,5 +1,5 @@
 import { formatDate } from "./formatDate";
-import { pickLocalized } from "./localize";
+import { pickLocalized } from "@/lib/i18n/localize";
 import SectionMessage from "./SectionMessage";
 import styles from "./Home.module.css";
 

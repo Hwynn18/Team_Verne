@@ -1,11 +1,13 @@
 import Link from "next/link";
-import { projectHref } from "@/features/projects/projectHref";
-import { getCoverUrl } from "@/features/projects/coverUrl";
-import CoverImage from "@/features/projects/CoverImage";
 import { pickLocalized } from "@/lib/i18n/localize";
-import styles from "./Home.module.css";
+import { projectHref } from "./projectHref";
+import { getCoverUrl } from "./coverUrl";
+import CoverImage from "./CoverImage";
+import StatusBadge from "./StatusBadge";
+import DepartmentTags from "./DepartmentTags";
+import styles from "./Projects.module.css";
 
-export default function ProjectCard({ project, locale }) {
+export default function ProjectListCard({ project, locale, labels }) {
   const title = pickLocalized(project, "title", locale);
   const summary = pickLocalized(project, "summary", locale);
 
@@ -15,10 +17,12 @@ export default function ProjectCard({ project, locale }) {
         <CoverImage src={getCoverUrl(project.cover_path)} sizes="(max-width: 768px) 100vw, 340px" />
       </div>
       <div className={styles.cardBody}>
-        <h3 className={styles.cardTitle}>
+        <StatusBadge status={project.status} labels={labels} />
+        <h2 className={styles.cardTitle}>
           <Link href={projectHref(project.slug)} className={styles.cardLink}>{title}</Link>
-        </h3>
+        </h2>
         <p className={styles.cardSummary}>{summary}</p>
+        <DepartmentTags departments={project.departments} locale={locale} label={labels.departmentsLabel} />
       </div>
     </article>
   );
