@@ -196,10 +196,11 @@
     overflow-y: auto;
     visibility: hidden;
     transform: translateX(-100%);
-    transition: transform 0.2s, visibility 0.2s;
+    transition: transform 0.2s, visibility 0s linear 0.2s;
   }
 
   .sidebarOpen {
+    transition: transform 0.2s, visibility 0s;
     visibility: visible;
     transform: none;
   }
