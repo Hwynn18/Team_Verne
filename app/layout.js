@@ -1,5 +1,7 @@
 import { mainFont } from "@/lib/config/fonts";
 import { siteConfig } from "@/lib/config/site";
+import { getLocale } from "@/lib/i18n/server";
+import Sidebar from "@/features/layout/Sidebar";
 import "@/styles/theme.css";
 import "@/styles/globals.css";
 
@@ -8,10 +10,15 @@ export const metadata = {
   description: siteConfig.description,
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const locale = await getLocale();
+
   return (
-    <html lang="ko" className={mainFont.variable}>
-      <body>{children}</body>
+    <html lang={locale} className={mainFont.variable}>
+      <body>
+        <Sidebar />
+        <div className="app-content">{children}</div>
+      </body>
     </html>
   );
 }
