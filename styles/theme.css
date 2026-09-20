@@ -1,0 +1,7 @@
+:root {
+  --color-primary: #4ade80;
+  --color-primary-strong: #16a34a;
+  --color-bg: #ffffff;
+  --color-text: #111827;
+  --font-fallback: "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", system-ui, sans-serif;
+}
