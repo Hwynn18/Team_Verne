@@ -9,5 +9,6 @@ export function useScrollReveal() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-15% 0px" });
   const reduceMotion = useReducedMotion();
+  console.log("[useScrollReveal] reduceMotion:", reduceMotion);
   return { ref, visible: reduceMotion || inView };
 }
