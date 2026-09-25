@@ -5,6 +5,6 @@ export function generateMetadata() {
   return getAboutMetadata("aboutNews");
 }
 
-export default function Page() {
-  return <NewsListPage />;
+export default function Page({ searchParams }) {
+  return <NewsListPage searchParams={searchParams} />;
 }

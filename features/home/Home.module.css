@@ -161,6 +161,12 @@
 
 .updateTitle { overflow-wrap: anywhere; }
 
+.updateLink:hover,
+.updateLink:focus-visible {
+  color: var(--color-primary-strong);
+  text-decoration: underline;
+}
+
 .message {
   margin: 0;
   padding: 20px;

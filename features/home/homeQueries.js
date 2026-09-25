@@ -14,5 +14,5 @@ export const getFeaturedProjects = createCachedQuery("home-featured", (supabase)
 );
 
 export const getLatestNews = createCachedQuery("home-news", (supabase) =>
-  supabase.from("news").select("id, title_ko, title_en, published_at").order("published_at", { ascending: false }).limit(NEWS_LIMIT)
+  supabase.from("news").select("id, slug, title_ko, title_en, published_at").order("published_at", { ascending: false }).limit(NEWS_LIMIT)
 );

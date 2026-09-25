@@ -4,8 +4,9 @@ import { getDictionary } from "@/lib/i18n/server";
 import { pickLocalized } from "@/lib/i18n/localize";
 import { formatDate } from "@/lib/i18n/formatDate";
 import { isValidSlug } from "@/lib/validation/slug";
-import { getAllNews } from "./aboutQueries";
+import { getNewsBySlug } from "./aboutQueries";
 import CategoryBadge from "./CategoryBadge";
+import NewsBody from "./NewsBody";
 import AboutMessage from "./AboutMessage";
 import styles from "./About.module.css";
 
@@ -16,7 +17,7 @@ function BackLink({ label }) {
 export default async function NewsDetailPage({ slug }) {
   if (!isValidSlug(slug)) notFound();
 
-  const [{ locale, t }, result] = await Promise.all([getDictionary(), getAllNews()]);
+  const [{ locale, t }, result] = await Promise.all([getDictionary(), getNewsBySlug(slug)]);
   const labels = t.about.news;
 
   // 조회 실패는 404가 아니라 에러 안내로 보여준다. 없는 소식과 구분하려는 거야.
@@ -29,7 +30,7 @@ export default async function NewsDetailPage({ slug }) {
     );
   }
 
-  const item = result.data.find((news) => news.slug === slug);
+  const item = result.data;
   if (!item) notFound();
 
   const body = pickLocalized(item, "body", locale);
@@ -42,7 +43,7 @@ export default async function NewsDetailPage({ slug }) {
         <time className={styles.newsDate} dateTime={item.published_at}>{formatDate(item.published_at, locale)}</time>
       </div>
       <h1 className={styles.detailTitle}>{pickLocalized(item, "title", locale)}</h1>
-      {body && <div className={styles.detailBody}>{body}</div>}
+      {body && <NewsBody markdown={body} />}
     </main>
   );
 }
