@@ -1,5 +1,5 @@
 // features/projects/coverUrl.js, features/about/photoUrl.js 의 BUCKET 과 같은 값이어야 함
-const IMAGE_BUCKETS = ["project-covers", "member-photos"];
+const IMAGE_BUCKETS = ["project-covers", "member-photos", "team-gallery"];
 
 // 이미지 최적화를 허용할 Supabase 호스트를 .env.local 의 SUPABASE_URL 에서 가져온다
 function getSupabaseHost() {
