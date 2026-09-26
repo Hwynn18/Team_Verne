@@ -6,7 +6,7 @@ import { useScrollReveal } from "./useScrollReveal";
 import styles from "./Teams.module.css";
 
 export default function DepartmentSection({ department, members, index, labels, locale }) {
-  const { ref, visible } = useScrollReveal();
+  const { ref, visible, reduceMotion } = useScrollReveal();
   // 짝수/홀수 인덱스로 좌우를 교차시킨다 (지그재그)
   const align = index % 2 === 0 ? styles.sectionLeft : styles.sectionRight;
   const fromX = index % 2 === 0 ? -32 : 32;
@@ -15,7 +15,7 @@ export default function DepartmentSection({ department, members, index, labels, 
     <section ref={ref} className={`${styles.departmentSection} ${align}`} aria-labelledby={`dept-${department.slug}`}>
       <motion.div
         className={styles.departmentInner}
-        initial={{ opacity: 0, x: fromX }}
+        initial={reduceMotion ? false : { opacity: 0, x: fromX }}
         animate={visible ? { opacity: 1, x: 0 } : {}}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >

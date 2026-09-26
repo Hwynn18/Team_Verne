@@ -7,7 +7,7 @@ import { useScrollReveal } from "./useScrollReveal";
 import styles from "./Teams.module.css";
 
 function TimelineItem({ event, locale }) {
-  const { ref, visible } = useScrollReveal();
+  const { ref, visible, reduceMotion } = useScrollReveal();
   const title = pickLocalized(event, "title", locale);
   const description = pickLocalized(event, "description", locale);
 
@@ -15,7 +15,7 @@ function TimelineItem({ event, locale }) {
     <li ref={ref} className={styles.timelineItem}>
       <motion.div
         className={styles.timelineContent}
-        initial={{ opacity: 0, y: 24 }}
+        initial={reduceMotion ? false : { opacity: 0, y: 24 }}
         animate={visible ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
