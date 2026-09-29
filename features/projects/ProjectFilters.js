@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { pickLocalized } from "@/lib/i18n/localize";
-import { STATUS_VALUES, STATUS_LABEL_KEYS, buildFilterHref } from "./projectFilters";
+import { STATUS_VALUES, STATUS_LABEL_KEYS, buildFilterHref } from "./filterParams";
 import styles from "./Projects.module.css";
 
 function Chip({ href, active, children }) {

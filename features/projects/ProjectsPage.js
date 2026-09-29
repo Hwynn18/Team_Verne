@@ -2,7 +2,7 @@ import { getDictionary } from "@/lib/i18n/server";
 import { getAllProjects } from "./projectQueries";
 import { getDepartments } from "@/lib/data/departmentQueries";
 import { normalizeProjects } from "./normalizeProjects";
-import { parseFilters, applyFilters } from "./projectFilters";
+import { parseFilters, applyFilters } from "./filterParams";
 import ProjectFilters from "./ProjectFilters";
 import ProjectListCard from "./ProjectListCard";
 import ProjectsMessage from "./ProjectsMessage";

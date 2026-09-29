@@ -84,6 +84,7 @@ RESEND_API_KEY, INQUIRY_NOTIFY_EMAIL(Resend 가입 이메일과 같아야 함. �
 npm run lint
 npm run build
 npm run check:contrast
+npm run check:case
 for VAR in SUPABASE_SERVICE_ROLE_KEY RESEND_API_KEY; do
   P=$(grep "^$VAR=" .env.local | cut -d= -f2- | cut -c1-24)
   if [ -z "$P" ]; then echo "SKIP: $VAR 없음"; elif grep -rlq "$P" .next/static; then echo "LEAK: $VAR 커밋 금지"; else echo "OK: $VAR"; fi

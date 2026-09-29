@@ -1,4 +1,4 @@
-import { STATUS_LABEL_KEYS } from "./projectFilters";
+import { STATUS_LABEL_KEYS } from "./filterParams";
 import styles from "./Projects.module.css";
 
 export default function StatusBadge({ status, labels }) {
