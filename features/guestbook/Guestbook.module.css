@@ -1,0 +1,136 @@
+.page {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 40px 72px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.title {
+  margin: 0;
+  font-size: 32px;
+}
+
+.intro {
+  margin: 0;
+  color: #4b5563;
+}
+
+.sectionTitle {
+  margin: 0 0 16px;
+  font-size: 22px;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.entry {
+  padding: 20px 22px;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.entryHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.nickname {
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.date {
+  flex-shrink: 0;
+  font-size: 13px;
+  color: #6b7280;
+  font-variant-numeric: tabular-nums;
+}
+
+.entryMessage {
+  margin: 0;
+  line-height: 1.7;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.deleteToggle {
+  align-self: flex-start;
+  padding: 4px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: none;
+  font: inherit;
+  font-size: 13px;
+  color: #4b5563;
+  cursor: pointer;
+}
+
+.deleteForm {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--color-border);
+}
+
+.deleteField {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 280px;
+}
+
+.deleteActions {
+  display: flex;
+  gap: 8px;
+}
+
+.deleteSubmit {
+  padding: 4px 12px;
+  border: 0;
+  border-radius: 999px;
+  background: #b91c1c;
+  color: #fff;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.deleteSubmit:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.message {
+  margin: 0;
+  padding: 20px;
+  border: 1px dashed var(--color-border);
+  border-radius: 12px;
+  color: #4b5563;
+}
+
+.messageError {
+  color: #b91c1c;
+  border-color: #fca5a5;
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 24px 20px 56px;
+    gap: 24px;
+  }
+}
