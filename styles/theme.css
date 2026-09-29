@@ -14,6 +14,9 @@
   --color-primary-glow: rgb(2 51 251 / 0.18);
   --color-on-primary: #ffffff;
 
+  /* 모바일 메뉴 뒤 어두운 막 */
+  --color-backdrop: rgb(0 0 0 / 0.6);
+
   /* 면은 3단계: 페이지 < 카드·패널 < hover·메뉴. 회색은 파랑과 어울리게 살짝 푸른 쿨톤 */
   --color-bg: #0a0b10;
   --color-surface: #12141b;
