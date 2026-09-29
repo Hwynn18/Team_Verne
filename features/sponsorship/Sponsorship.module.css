@@ -1,0 +1,23 @@
+.page {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 40px 72px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.title {
+  margin: 0;
+  font-size: 32px;
+}
+
+.intro {
+  margin: 0;
+  color: #4b5563;
+  line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+  .page { padding: 24px 20px 56px; }
+}

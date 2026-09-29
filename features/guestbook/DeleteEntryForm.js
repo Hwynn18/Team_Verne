@@ -3,7 +3,7 @@
 import { useActionState, useState } from "react";
 import formStyles from "@/lib/forms/Forms.module.css";
 import { deleteEntry } from "./actions";
-import { getErrorMessage } from "./errorMessage";
+import { getErrorMessage } from "@/lib/forms/errorMessage";
 import { PASSWORD_MIN, PASSWORD_MAX } from "./validation";
 import styles from "./Guestbook.module.css";
 
