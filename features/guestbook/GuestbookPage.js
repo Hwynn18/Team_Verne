@@ -1,33 +1,43 @@
 import { getDictionary } from "@/lib/i18n/server";
 import { formatDate } from "@/lib/i18n/formatDate";
-import { getEntries } from "./guestbookQueries";
+import { parsePage } from "@/lib/validation/page";
+import Pagination from "@/lib/ui/Pagination";
+import { getEntriesPage, GUESTBOOK_PAGE_SIZE } from "./guestbookQueries";
 import GuestbookForm from "./GuestbookForm";
 import DeleteEntryForm from "./DeleteEntryForm";
 import styles from "./Guestbook.module.css";
 
-function EntryList({ result, locale, labels }) {
+function EntryList({ result, page, locale, labels }) {
   if (result.failed) return <p className={`${styles.message} ${styles.messageError}`}>{labels.loadError}</p>;
-  if (result.data.length === 0) return <p className={styles.message}>{labels.empty}</p>;
+
+  const { items, total } = result.data;
+  const totalPages = Math.max(1, Math.ceil(total / GUESTBOOK_PAGE_SIZE));
+  if (items.length === 0) return <p className={styles.message}>{page > totalPages ? labels.emptyPage : labels.empty}</p>;
 
   return (
-    <ul className={styles.list}>
-      {result.data.map((entry) => (
-        <li key={entry.id} className={styles.entry}>
-          <div className={styles.entryHead}>
-            <span className={styles.nickname}>{entry.nickname}</span>
-            <time className={styles.date} dateTime={entry.created_at}>{formatDate(entry.created_at, locale)}</time>
-          </div>
-          <p className={styles.entryMessage}>{entry.message}</p>
-          <DeleteEntryForm id={entry.id} labels={labels} />
-        </li>
-      ))}
-    </ul>
+    <>
+      <ul className={styles.list}>
+        {items.map((entry) => (
+          <li key={entry.id} className={styles.entry}>
+            <div className={styles.entryHead}>
+              <span className={styles.nickname}>{entry.nickname}</span>
+              <time className={styles.date} dateTime={entry.created_at}>{formatDate(entry.created_at, locale)}</time>
+            </div>
+            <p className={styles.entryMessage}>{entry.message}</p>
+            <DeleteEntryForm id={entry.id} labels={labels} />
+          </li>
+        ))}
+      </ul>
+      <Pagination basePath="/guestbook" page={page} totalPages={totalPages} labels={labels} />
+    </>
   );
 }
 
-export default async function GuestbookPage() {
-  const [{ locale, t }, result] = await Promise.all([getDictionary(), getEntries()]);
+export default async function GuestbookPage({ searchParams }) {
+  const [{ locale, t }, query] = await Promise.all([getDictionary(), searchParams]);
   const labels = t.guestbook;
+  const page = parsePage(query.page);
+  const result = await getEntriesPage(page);
 
   return (
     <main className={styles.page}>
@@ -36,7 +46,7 @@ export default async function GuestbookPage() {
       <GuestbookForm labels={labels} />
       <section aria-labelledby="guestbook-list">
         <h2 id="guestbook-list" className={styles.sectionTitle}>{labels.listTitle}</h2>
-        <EntryList result={result} locale={locale} labels={labels} />
+        <EntryList result={result} page={page} locale={locale} labels={labels} />
       </section>
     </main>
   );

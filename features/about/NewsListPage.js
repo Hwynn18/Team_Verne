@@ -3,29 +3,12 @@ import { getDictionary } from "@/lib/i18n/server";
 import { pickLocalized } from "@/lib/i18n/localize";
 import { formatDate } from "@/lib/i18n/formatDate";
 import { parsePage } from "@/lib/validation/page";
+import Pagination from "@/lib/ui/Pagination";
 import { getNewsPage, NEWS_PAGE_SIZE } from "./aboutQueries";
-import { newsHref, newsListHref } from "./newsHref";
+import { newsHref } from "./newsHref";
 import CategoryBadge from "./CategoryBadge";
 import AboutMessage from "./AboutMessage";
 import styles from "./About.module.css";
-
-function PageNav({ page, totalPages, labels }) {
-  return (
-    <nav className={styles.pagination} aria-label={labels.paginationLabel}>
-      {page > 1 ? (
-        <Link href={newsListHref(page - 1)} className={styles.pageLink}>{labels.prevPage}</Link>
-      ) : (
-        <span className={styles.pageLinkDisabled} aria-hidden="true">{labels.prevPage}</span>
-      )}
-      <span className={styles.pageStatus}>{labels.pageStatus.replace("{current}", page).replace("{total}", totalPages)}</span>
-      {page < totalPages ? (
-        <Link href={newsListHref(page + 1)} className={styles.pageLink}>{labels.nextPage}</Link>
-      ) : (
-        <span className={styles.pageLinkDisabled} aria-hidden="true">{labels.nextPage}</span>
-      )}
-    </nav>
-  );
-}
 
 export default async function NewsListPage({ searchParams }) {
   const [{ locale, t }, query] = await Promise.all([getDictionary(), searchParams]);
@@ -57,7 +40,7 @@ export default async function NewsListPage({ searchParams }) {
               </li>
             ))}
           </ul>
-          {totalPages > 1 && <PageNav page={page} totalPages={totalPages} labels={labels} />}
+          <Pagination basePath="/about/news" page={page} totalPages={totalPages} labels={labels} />
         </>
       );
     }

@@ -3,11 +3,13 @@
 import { revalidatePath } from "next/cache";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { hashPassword, verifyPassword } from "@/lib/security/password";
-import { isHoneypotFilled, isCoolingDown, startCooldown } from "@/lib/forms/spamGuard";
+import { isHoneypotFilled, isCoolingDown, startCooldown, getClientIpHash, isIpRateLimited, recordSubmission } from "@/lib/forms/spamGuard";
 import { parseEntryInput, parseDeleteInput } from "./validation";
 
 const PAGE_PATH = "/guestbook";
+const POST_SCOPE = "guestbook-post";
 const POST_COOLDOWN_SECONDS = 30;
+const IP_POST_LIMIT = { max: 3, windowSeconds: 600 };
 const DELETE_COOLDOWN_SECONDS = 5;
 const MAX_DELETE_FAILURES = 5;
 
@@ -16,20 +18,25 @@ export async function createEntry(_prevState, formData) {
   if (isHoneypotFilled(formData)) return { status: "success" };
 
   const parsed = parseEntryInput(formData);
-  if (await isCoolingDown("guestbook-post")) return { status: "error", code: "tooFast", values: parsed.values };
+  if (await isCoolingDown(POST_SCOPE)) return { status: "error", code: "tooFast", values: parsed.values };
   if (!parsed.ok) return { status: "error", code: parsed.code, values: parsed.values };
 
   try {
+    const ipHash = await getClientIpHash();
+    if (await isIpRateLimited(POST_SCOPE, ipHash, IP_POST_LIMIT)) {
+      return { status: "error", code: "rateLimited", values: parsed.values };
+    }
     const passwordHash = await hashPassword(parsed.password);
     const db = createSupabaseAdminClient();
     const { error } = await db.from("guestbook_entries").insert({ nickname: parsed.values.nickname, message: parsed.values.message, password_hash: passwordHash });
     if (error) throw new Error(`${error.code ?? "unknown"}: ${error.message}`);
+    await recordSubmission(POST_SCOPE, ipHash);
   } catch (error) {
     console.error("[guestbook:create]", error);
     return { status: "error", code: "server", values: parsed.values };
   }
 
-  await startCooldown("guestbook-post", POST_COOLDOWN_SECONDS);
+  await startCooldown(POST_SCOPE, POST_COOLDOWN_SECONDS);
   revalidatePath(PAGE_PATH);
   return { status: "success" };
 }

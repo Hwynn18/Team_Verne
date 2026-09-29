@@ -6,6 +6,6 @@ export async function generateMetadata() {
   return { title: t.nav.guestbook };
 }
 
-export default function Page() {
-  return <GuestbookPage />;
+export default function Page({ searchParams }) {
+  return <GuestbookPage searchParams={searchParams} />;
 }
