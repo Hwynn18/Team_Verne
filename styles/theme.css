@@ -2,25 +2,45 @@
   /* 다크 테마: 폼 입력칸, 체크박스, 스크롤바도 어두운 스타일로 그린다 */
   color-scheme: dark;
 
-  /* 시그니처 컬러(로고와 같은 값). 면을 칠하는 곳에만 쓰고, 그 위 글자는 on-primary */
+  /* 시그니처 컬러(로고와 같은 값). 좁은 면(버튼·칩·뱃지)에만 쓰고, 그 위 글자는 on-primary */
   --color-primary: #0233fb;
+  /* primary 버튼 hover */
+  --color-primary-hover: #2a52ff;
   /* 강조 글자, 링크, 포커스 링. 검은 배경에서 읽히게 로고 파랑을 밝힌 값 */
   --color-primary-strong: #7c96ff;
   /* hover, 활성 메뉴 배경 */
   --color-primary-soft: #0f1f5c;
+  /* 배너 모서리의 옅은 파란 빛 (장식용, 글자 배경으로 쓰지 않음) */
+  --color-primary-glow: rgb(2 51 251 / 0.18);
   --color-on-primary: #ffffff;
 
-  --color-bg: #0a0a0a;
-  --color-text: #f5f5f5;
+  /* 면은 3단계: 페이지 < 카드·패널 < hover·메뉴. 회색은 파랑과 어울리게 살짝 푸른 쿨톤 */
+  --color-bg: #0a0b10;
+  --color-surface: #12141b;
+  --color-surface-2: #1a1d27;
+  --color-text: #f3f5fa;
   /* 날짜, 힌트 같은 보조 글자 */
-  --color-text-muted: #a3a3a3;
+  --color-text-muted: #9aa1b2;
   /* 비활성 버튼 글자 (WCAG 대비 기준 예외) */
-  --color-text-disabled: #6b6b6b;
-  --color-border: #2a2a2a;
+  --color-text-disabled: #5d6375;
+  --color-border: #232735;
 
   --color-danger: #f87171;
   --color-danger-soft: #2a1212;
   --color-on-danger: #0a0a0a;
+
+  /* 둥글기 3단계: 버튼·칩·입력칸 / 카드·패널·이미지 / 뱃지·태그 */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-full: 999px;
+
+  /* 글자 크기 단계 */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-md: 16px;
+  --text-lg: 20px;
+  --text-xl: 28px;
+  --text-2xl: clamp(32px, 4.5vw, 44px);
 
   --sidebar-width: 240px;
   --font-fallback: "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", system-ui, sans-serif;

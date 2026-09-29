@@ -13,7 +13,10 @@ export default async function SocialPage() {
 
   return (
     <main className={`${styles.page} ${styles.pageNarrow}`}>
-      <h1 className={styles.title}>{t.nav.aboutSocial}</h1>
+      <hgroup>
+        <p className="eyebrow">{t.nav.about}</p>
+        <h1 className={styles.title}>{t.nav.aboutSocial}</h1>
+      </hgroup>
       <p className={styles.socialDesc}>{labels.description}</p>
       {handle ? (
         <>

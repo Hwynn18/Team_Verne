@@ -13,7 +13,10 @@ export default async function DepartmentsPage() {
   if (departmentsResult.failed || membersResult.failed) {
     return (
       <main className={styles.page}>
-        <h1 className={styles.title}>{t.nav.teamsDepartment}</h1>
+        <hgroup>
+          <p className="eyebrow">{t.nav.teams}</p>
+          <h1 className={styles.title}>{t.nav.teamsDepartment}</h1>
+        </hgroup>
         <TeamsMessage tone="error">{labels.loadError}</TeamsMessage>
       </main>
     );
@@ -24,7 +27,10 @@ export default async function DepartmentsPage() {
 
   return (
     <main className={styles.page}>
-      <h1 className={styles.title}>{t.nav.teamsDepartment}</h1>
+      <hgroup>
+        <p className="eyebrow">{t.nav.teams}</p>
+        <h1 className={styles.title}>{t.nav.teamsDepartment}</h1>
+      </hgroup>
       {groups.map(({ department, members }, index) => (
         <DepartmentSection key={department.id} department={department} members={members} index={index} labels={labels} locale={locale} />
       ))}

@@ -4,12 +4,13 @@
   gap: 16px;
   padding: 28px;
   border: 1px solid var(--color-border);
-  border-radius: 20px;
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
 }
 
 .formTitle {
   margin: 0;
-  font-size: 20px;
+  font-size: var(--text-lg);
 }
 
 .field {
@@ -19,7 +20,7 @@
 }
 
 .label {
-  font-size: 14px;
+  font-size: var(--text-sm);
   font-weight: 700;
 }
 
@@ -28,7 +29,7 @@
   width: 100%;
   padding: 10px 14px;
   border: 1px solid var(--color-border);
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   font: inherit;
   color: inherit;
   background: var(--color-bg);
@@ -46,7 +47,7 @@
 }
 
 .hint {
-  font-size: 13px;
+  font-size: var(--text-sm);
   color: var(--color-text-muted);
 }
 
@@ -60,12 +61,21 @@
   align-self: flex-start;
   padding: 12px 24px;
   border: 0;
-  border-radius: 999px;
+  border-radius: var(--radius-sm);
   background: var(--color-text);
   color: var(--color-bg);
   font: inherit;
   font-weight: 700;
   cursor: pointer;
+}
+
+.button {
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.button:hover:not(:disabled) {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
 }
 
 .button:disabled {
@@ -76,8 +86,8 @@
 .status {
   margin: 0;
   padding: 12px 16px;
-  border-radius: 10px;
-  font-size: 14px;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
 }
 
 .statusError {
@@ -94,8 +104,8 @@
   margin: 0;
   padding: 16px 18px;
   border: 1px solid var(--color-border);
-  border-radius: 12px;
-  font-size: 13px;
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
   color: var(--color-text-muted);
 }
 

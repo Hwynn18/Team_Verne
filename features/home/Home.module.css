@@ -21,16 +21,18 @@
 
 .sectionTitle {
   margin: 0 0 20px;
-  font-size: 22px;
+  font-size: var(--text-xl);
 }
 
 .banner {
   display: grid;
   gap: 40px;
   padding: 48px 40px;
-  border-radius: 24px;
-  background: var(--color-primary);
-  color: var(--color-on-primary);
+  border: 1px solid var(--color-border);
+  border-top: 2px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  /* 넓은 면은 어둡게, 파랑은 윗선·모서리 빛·버튼에만 */
+  background: radial-gradient(ellipse at 100% 0%, var(--color-primary-glow), transparent 60%), var(--color-surface);
 }
 
 .bannerWithCover {
@@ -41,20 +43,15 @@
 .bannerText { min-width: 0; }
 
 .bannerCover {
-  border-radius: 16px;
+  border-radius: var(--radius-sm);
   overflow: hidden;
 }
 
-.bannerLabel {
-  margin: 0 0 16px;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-}
+.bannerLabel { margin: 0 0 16px; }
 
 .bannerTitle {
   margin: 0 0 12px;
-  font-size: clamp(28px, 4vw, 44px);
+  font-size: var(--text-2xl);
   line-height: 1.2;
   overflow-wrap: anywhere;
 }
@@ -62,21 +59,23 @@
 .bannerSummary {
   margin: 0 0 28px;
   max-width: 60ch;
-  font-size: 17px;
-  line-height: 1.6;
+  font-size: var(--text-md);
+  line-height: 1.7;
+  color: var(--color-text-muted);
   overflow-wrap: anywhere;
 }
 
 .bannerAction {
   display: inline-block;
   padding: 12px 20px;
-  border-radius: 999px;
-  background: var(--color-on-primary);
-  color: var(--color-primary);
+  border-radius: var(--radius-sm);
+  background: var(--color-primary);
+  color: var(--color-on-primary);
   font-weight: 700;
+  transition: background-color 0.15s;
 }
 
-.bannerAction:hover { opacity: 0.85; }
+.bannerAction:hover { background: var(--color-primary-hover); }
 
 .cardGrid {
   list-style: none;
@@ -93,18 +92,19 @@
   flex-direction: column;
   height: 100%;
   border: 1px solid var(--color-border);
-  border-radius: 16px;
-  transition: border-color 0.15s, box-shadow 0.15s;
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  transition: border-color 0.15s, background-color 0.15s;
 }
 
 .card:hover,
 .card:focus-within {
   border-color: var(--color-primary-strong);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  background: var(--color-surface-2);
 }
 
 .cardCover {
-  border-radius: 15px 15px 0 0;
+  border-radius: calc(var(--radius-md) - 1px) calc(var(--radius-md) - 1px) 0 0;
   overflow: hidden;
 }
 
@@ -115,7 +115,7 @@
 
 .cardTitle {
   margin: 0 0 8px;
-  font-size: 18px;
+  font-size: var(--text-lg);
   overflow-wrap: anywhere;
 }
 
@@ -123,7 +123,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: 16px;
+  border-radius: var(--radius-md);
 }
 
 .cardSummary {
@@ -155,7 +155,7 @@
 .updateDate {
   flex: 0 0 110px;
   color: var(--color-text-muted);
-  font-size: 14px;
+  font-size: var(--text-sm);
   font-variant-numeric: tabular-nums;
 }
 
@@ -171,23 +171,13 @@
   margin: 0;
   padding: 20px;
   border: 1px dashed var(--color-border);
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   color: var(--color-text-muted);
 }
 
 .messageError {
   color: var(--color-danger);
   border-color: var(--color-danger);
-}
-
-.banner .message {
-  color: var(--color-on-primary);
-  border-color: rgba(255, 255, 255, 0.5);
-}
-
-.banner .messageError {
-  color: var(--color-on-primary);
-  border-color: var(--color-on-primary);
 }
 
 @media (max-width: 768px) {

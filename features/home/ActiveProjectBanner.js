@@ -28,7 +28,7 @@ export default function ActiveProjectBanner({ result, locale, labels }) {
   return (
     <section className={className} aria-labelledby="home-active">
       <div className={styles.bannerText}>
-        <h2 id="home-active" className={styles.bannerLabel}>{labels.activeTitle}</h2>
+        <h2 id="home-active" className={`eyebrow ${styles.bannerLabel}`}>{labels.activeTitle}</h2>
         <BannerBody result={result} locale={locale} labels={labels} />
       </div>
       {coverUrl && (

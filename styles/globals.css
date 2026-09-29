@@ -39,3 +39,19 @@ body { font-weight: var(--font-weight-regular); }
 h1 { font-weight: var(--font-weight-bold); }
 h2,
 h3 { font-weight: var(--font-weight-semibold); }
+
+/* 큰 제목은 자간을 살짝 좁혀 단단하게 */
+h1,
+h2 { letter-spacing: -0.02em; }
+
+/* 제목 위 작은 라벨 (섹션 이름, 상위 메뉴 이름) */
+.eyebrow {
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-primary-strong);
+}
+
+hgroup { margin: 0; }
+hgroup > .eyebrow { margin: 0 0 12px; }

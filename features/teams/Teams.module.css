@@ -9,14 +9,14 @@
 
 .title {
   margin: 0;
-  font-size: 32px;
+  font-size: var(--text-2xl);
 }
 
 .message {
   margin: 0;
   padding: 20px;
   border: 1px dashed var(--color-border);
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   color: var(--color-text-muted);
 }
 
@@ -36,9 +36,10 @@
 }
 
 .galleryItem {
-  border-radius: 16px;
+  border-radius: var(--radius-md);
   overflow: hidden;
   border: 1px solid var(--color-border);
+  background: var(--color-surface);
 }
 
 .galleryImage {
@@ -51,7 +52,7 @@
 .galleryCaption {
   margin: 0;
   padding: 10px 14px;
-  font-size: 14px;
+  font-size: var(--text-sm);
   color: var(--color-text-muted);
 }
 
@@ -90,7 +91,7 @@
 }
 
 .timelineDate {
-  font-size: 13px;
+  font-size: var(--text-sm);
   font-weight: 700;
   color: var(--color-primary-strong);
   font-variant-numeric: tabular-nums;
@@ -98,7 +99,7 @@
 
 .timelineTitle {
   margin: 0;
-  font-size: 18px;
+  font-size: var(--text-lg);
   overflow-wrap: anywhere;
 }
 
@@ -122,12 +123,13 @@
   width: min(100%, 480px);
   padding: 32px;
   border: 1px solid var(--color-border);
-  border-radius: 20px;
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
 }
 
 .departmentName {
   margin: 0 0 16px;
-  font-size: 24px;
+  font-size: var(--text-xl);
 }
 
 .departmentEmpty {
@@ -153,7 +155,7 @@
 .departmentMemberName { font-weight: 600; }
 
 .departmentMemberRole {
-  font-size: 14px;
+  font-size: var(--text-sm);
   color: var(--color-text-muted);
 }
 

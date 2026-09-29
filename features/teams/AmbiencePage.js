@@ -32,7 +32,10 @@ export default async function AmbiencePage() {
 
   return (
     <main className={styles.page}>
-      <h1 className={styles.title}>{t.nav.teamsAmbience}</h1>
+      <hgroup>
+        <p className="eyebrow">{t.nav.teams}</p>
+        <h1 className={styles.title}>{t.nav.teamsAmbience}</h1>
+      </hgroup>
       <Body result={result} locale={locale} labels={t.teams.ambience} />
     </main>
   );

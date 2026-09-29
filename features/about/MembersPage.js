@@ -15,7 +15,10 @@ export default async function MembersPage() {
   if (membersResult.failed || departmentsResult.failed) {
     return (
       <main className={styles.page}>
-        <h1 className={styles.title}>{t.nav.aboutMembers}</h1>
+        <hgroup>
+          <p className="eyebrow">{t.nav.about}</p>
+          <h1 className={styles.title}>{t.nav.aboutMembers}</h1>
+        </hgroup>
         <AboutMessage tone="error">{labels.loadError}</AboutMessage>
       </main>
     );
@@ -25,7 +28,10 @@ export default async function MembersPage() {
 
   return (
     <main className={styles.page}>
-      <h1 className={styles.title}>{t.nav.aboutMembers}</h1>
+      <hgroup>
+        <p className="eyebrow">{t.nav.about}</p>
+        <h1 className={styles.title}>{t.nav.aboutMembers}</h1>
+      </hgroup>
       {groups.length === 0 ? (
         <AboutMessage>{labels.emptyMembers}</AboutMessage>
       ) : (

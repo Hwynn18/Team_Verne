@@ -6,7 +6,7 @@
 }
 
 .placeholder {
-  background: linear-gradient(135deg, var(--color-primary-soft), var(--color-primary));
+  background: linear-gradient(135deg, var(--color-surface-2), var(--color-primary-soft));
 }
 
 .image { object-fit: cover; }

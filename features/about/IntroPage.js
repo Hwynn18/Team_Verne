@@ -17,10 +17,13 @@ export default async function IntroPage() {
 
   return (
     <main className={`${styles.page} ${styles.pageNarrow}`}>
-      <h1 className={styles.title}>{t.nav.aboutIntro}</h1>
+      <hgroup>
+        <p className="eyebrow">{t.nav.about}</p>
+        <h1 className={styles.title}>{t.nav.aboutIntro}</h1>
+      </hgroup>
       {SECTIONS.map((key) => (
         <section key={key} className={styles.introSection} aria-labelledby={`intro-${key}`}>
-          <h2 id={`intro-${key}`} className={styles.introLabel}>{getText(labels, `${key}Title`)}</h2>
+          <h2 id={`intro-${key}`} className={`eyebrow ${styles.introLabel}`}>{getText(labels, `${key}Title`)}</h2>
           <p className={styles.introHeadline}>{getText(labels, `${key}Headline`)}</p>
           <p className={styles.introText}>{getText(labels, key)}</p>
         </section>
