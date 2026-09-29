@@ -47,7 +47,7 @@
 
 .hint {
   font-size: 13px;
-  color: #4b5563;
+  color: var(--color-text-muted);
 }
 
 .row {
@@ -81,8 +81,8 @@
 }
 
 .statusError {
-  background: #fef2f2;
-  color: #b91c1c;
+  background: var(--color-danger-soft);
+  color: var(--color-danger);
 }
 
 .statusSuccess {
@@ -96,7 +96,7 @@
   border: 1px solid var(--color-border);
   border-radius: 12px;
   font-size: 13px;
-  color: #374151;
+  color: var(--color-text-muted);
 }
 
 .privacyTitle {
@@ -112,7 +112,7 @@
 
 .privacyNote {
   margin: 0 0 10px;
-  color: #6b7280;
+  color: var(--color-text-muted);
 }
 
 .privacyAgree {

@@ -87,14 +87,14 @@
 
 .memberBio {
   margin: 6px 0 0;
-  color: #4b5563;
+  color: var(--color-text-muted);
   line-height: 1.6;
   overflow-wrap: anywhere;
 }
 
 .socialDesc {
   margin: 0;
-  color: #4b5563;
+  color: var(--color-text-muted);
   line-height: 1.7;
 }
 
@@ -143,7 +143,7 @@
 }
 
 .newsDate {
-  color: #4b5563;
+  color: var(--color-text-muted);
   font-size: 14px;
   font-variant-numeric: tabular-nums;
 }
@@ -208,12 +208,12 @@
   padding: 20px;
   border: 1px dashed var(--color-border);
   border-radius: 12px;
-  color: #4b5563;
+  color: var(--color-text-muted);
 }
 
 .messageError {
-  color: #b91c1c;
-  border-color: #fca5a5;
+  color: var(--color-danger);
+  border-color: var(--color-danger);
 }
 
 @media (max-width: 768px) {

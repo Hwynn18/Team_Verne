@@ -72,7 +72,7 @@
   padding: 12px 20px;
   border-radius: 999px;
   background: var(--color-on-primary);
-  color: var(--color-primary-strong);
+  color: var(--color-primary);
   font-weight: 700;
 }
 
@@ -128,7 +128,7 @@
 
 .cardSummary {
   margin: 0;
-  color: #4b5563;
+  color: var(--color-text-muted);
   line-height: 1.6;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -154,7 +154,7 @@
 
 .updateDate {
   flex: 0 0 110px;
-  color: #4b5563;
+  color: var(--color-text-muted);
   font-size: 14px;
   font-variant-numeric: tabular-nums;
 }
@@ -172,12 +172,12 @@
   padding: 20px;
   border: 1px dashed var(--color-border);
   border-radius: 12px;
-  color: #4b5563;
+  color: var(--color-text-muted);
 }
 
 .messageError {
-  color: #b91c1c;
-  border-color: #fca5a5;
+  color: var(--color-danger);
+  border-color: var(--color-danger);
 }
 
 .banner .message {

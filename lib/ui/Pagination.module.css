@@ -19,11 +19,11 @@
   padding: 6px 16px;
   border: 1px solid var(--color-border);
   border-radius: 999px;
-  color: #9ca3af;
+  color: var(--color-text-disabled);
 }
 
 .pageStatus {
   font-size: 14px;
-  color: #4b5563;
+  color: var(--color-text-muted);
   font-variant-numeric: tabular-nums;
 }

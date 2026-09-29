@@ -14,7 +14,7 @@
 
 .intro {
   margin: 0;
-  color: #4b5563;
+  color: var(--color-text-muted);
 }
 
 .sectionTitle {
@@ -55,7 +55,7 @@
 .date {
   flex-shrink: 0;
   font-size: 13px;
-  color: #6b7280;
+  color: var(--color-text-muted);
   font-variant-numeric: tabular-nums;
 }
 
@@ -74,7 +74,7 @@
   background: none;
   font: inherit;
   font-size: 13px;
-  color: #4b5563;
+  color: var(--color-text-muted);
   cursor: pointer;
 }
 
@@ -102,8 +102,8 @@
   padding: 4px 12px;
   border: 0;
   border-radius: 999px;
-  background: #b91c1c;
-  color: #fff;
+  background: var(--color-danger);
+  color: var(--color-on-danger);
   font: inherit;
   font-size: 13px;
   font-weight: 700;
@@ -120,12 +120,12 @@
   padding: 20px;
   border: 1px dashed var(--color-border);
   border-radius: 12px;
-  color: #4b5563;
+  color: var(--color-text-muted);
 }
 
 .messageError {
-  color: #b91c1c;
-  border-color: #fca5a5;
+  color: var(--color-danger);
+  border-color: var(--color-danger);
 }
 
 @media (max-width: 768px) {
