@@ -45,6 +45,7 @@
 .chipActive {
   background: var(--color-primary);
   border-color: var(--color-primary-strong);
+  color: var(--color-on-primary);
 }
 
 .grid {
@@ -122,7 +123,7 @@
 
 .badgeActive {
   background: var(--color-primary);
-  color: var(--color-text);
+  color: var(--color-on-primary);
 }
 
 .tagList {

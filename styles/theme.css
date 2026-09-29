@@ -1,10 +1,20 @@
 :root {
-  --color-primary: #4ade80;
-  --color-primary-strong: #16a34a;
-  --color-primary-soft: #dcfce7;
+  /* 시그니처 컬러: 로고와 같은 값 */
+  --color-primary: #0233fb;
+  /* 흰 배경 위 강조 글자용 (대비 10.1:1) */
+  --color-primary-strong: #0126c4;
+  /* 연한 배경(hover, 활성 메뉴) */
+  --color-primary-soft: #e6ebff;
+  /* 파란 배경 위 글자색 (대비 7.3:1) */
+  --color-on-primary: #ffffff;
   --color-bg: #ffffff;
   --color-text: #111827;
   --color-border: #e5e7eb;
   --sidebar-width: 240px;
   --font-fallback: "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", system-ui, sans-serif;
+  /* 폰트 가이드: 메인 타이틀/메뉴 Bold, 서브 타이틀 SemiBold, 본문 Regular, 부가 정보 Regular/Light */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
 }

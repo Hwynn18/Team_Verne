@@ -43,7 +43,7 @@
   cursor: pointer;
 }
 
-.langButton[aria-pressed="true"] { background: var(--color-primary); }
+.langButton[aria-pressed="true"] { background: var(--color-primary); color: var(--color-on-primary); }
 .langButton:disabled { cursor: progress; }
 
 .langError {
@@ -77,7 +77,7 @@
   border: 0;
   background: none;
   font: inherit;
-  font-weight: 600;
+  font-weight: var(--font-weight-bold);
   color: inherit;
   text-align: left;
   cursor: pointer;

@@ -1,4 +1,4 @@
-import { mainFont } from "@/lib/config/fonts";
+import { MAIN_FONT_FAMILY } from "@/lib/config/fonts";
 import { siteConfig } from "@/lib/config/site";
 import { getLocale } from "@/lib/i18n/server";
 import Sidebar from "@/features/layout/Sidebar";
@@ -14,7 +14,7 @@ export default async function RootLayout({ children }) {
   const locale = await getLocale();
 
   return (
-    <html lang={locale} className={mainFont.variable}>
+    <html lang={locale} style={{ "--font-main": MAIN_FONT_FAMILY }}>
       <body>
         <Sidebar />
         <div className="app-content">{children}</div>
