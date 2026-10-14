@@ -100,9 +100,17 @@ lint 경고 `@next/next/no-img-element`(소식 본문·갤러리 이미지)는 �
 Projects(파트 필터·상세), 방명록(허니팟·쿨다운·IP 제한·삭제 잠금·페이지네이션), 스폰서 문의(Resend 알림),
 브랜딩(로고·다크 테마·Pretendard·팀 소개 문구).
 
-다음 순서: **실제 내용 입력 → 배포**
-- 샘플 데이터(sample-* 프로젝트, 샘플 소식/멤버/사진, missing.jpg·missing-photo.jpg 테스트 값)는 배포 직전에 정리.
+실제 내용 입력 (2026-10-14):
+- 멤버: 이휘성(기획·개발 파트 리더, lee.jpg), 윤태중(기획·디자인, yoon.jpg), 개발 1자리는 `공석`/`Vacant`.
+  Teams 파트 페이지도 같은 members 테이블을 읽어서 같이 바뀜.
+- 소식: 샘플 15개와 sample-news.jpg 삭제. "이휘성 전역 D-19"(team, 전역일 2026-11-02) 1개만 있음. D-19는 고정 글자.
+- 팀 역사: 사용자가 이미 채움. 프로젝트: 진행 중인 게 없어서 샘플 그대로 둠.
+
+다음 순서: **남은 내용 입력 → 배포**
+- 갤러리: 사진 준비되면 `team-gallery` 버킷 업로드 + `gallery_photos` 등록, 샘플 사진 정리.
+- 배포 직전 정리: sample-* 프로젝트, member-photos 버킷의 sample-member-a.jpg, missing.jpg 테스트 값.
 - 배포 때 확인: x-forwarded-for 신뢰 여부(IP 제한), 환경변수 7개 이관, allowedOrigins 비어 있는지.
+- Supabase 무료 플랜은 오래 안 쓰면 정지됨. 정지 중엔 `*.supabase.co`가 DNS에서 안 풀려 `fetch failed`가 남 → 대시보드에서 Resume.
 
 미뤄둔 제안(사용자가 아직 고르지 않음): 한/영 404 페이지, 프로젝트 상세 본문·기간, 입력칸 테두리 대비 강화,
 흰 로고 파일, 문의자 자동 확인 메일(도메인 필요), 문의 처리 상태 컬럼, img lint 경고 정리, 멤버 페이지네이션.
