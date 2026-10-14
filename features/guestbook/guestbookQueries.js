@@ -10,7 +10,9 @@ export async function getEntriesPage(page) {
     const db = createSupabaseAdminClient();
     const { count, error: countError } = await db.from("guestbook_entries").select("id", { count: "exact", head: true });
     if (countError) throw new Error(`${countError.code ?? "unknown"}: ${countError.message}`);
-    const total = count ?? 0;
+    // head 요청은 DB가 덜 켜졌을 때 에러 없이 count=null을 돌려줘서 "0개"로 둔갑하지 않게 막는다
+    if (count === null) throw new Error("guestbook count is null");
+    const total = count;
 
     const from = (page - 1) * GUESTBOOK_PAGE_SIZE;
     // 범위를 넘는 구간을 요청하면 Supabase가 PGRST103으로 거부해서 미리 걸러낸다
