@@ -27,8 +27,22 @@ function getDevActionOrigins() {
 
 const host = getSupabaseHost();
 
+// 모든 응답에 붙이는 보안 헤더. 전체 CSP(script-src 등)는 nonce와 proxy.js가 필요해서 아직 넣지 않았다.
+// HSTS는 https 응답에서만 브라우저가 따르므로 로컬 http 개발에는 영향이 없다.
+const SECURITY_HEADERS = [
+  { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" },
+  { key: "Content-Security-Policy", value: "frame-ancestors 'none'" },
+  { key: "X-Frame-Options", value: "DENY" },
+  { key: "X-Content-Type-Options", value: "nosniff" },
+  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), browsing-topics=()" },
+];
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  async headers() {
+    return [{ source: "/:path*", headers: SECURITY_HEADERS }];
+  },
   images: {
     remotePatterns: IMAGE_BUCKETS.map((bucket) => ({
       protocol: "https",

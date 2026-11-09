@@ -3,15 +3,19 @@
 import { revalidatePath } from "next/cache";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { hashPassword, verifyPassword } from "@/lib/security/password";
-import { isHoneypotFilled, isCoolingDown, startCooldown, getClientIpHash, isIpRateLimited, recordSubmission } from "@/lib/forms/spamGuard";
+import { isHoneypotFilled, isCoolingDown, startCooldown, getClientIpHash, tryReserveSubmission } from "@/lib/forms/spamGuard";
 import { parseEntryInput, parseDeleteInput } from "./validation";
 
 const PAGE_PATH = "/guestbook";
 const POST_SCOPE = "guestbook-post";
-const POST_COOLDOWN_SECONDS = 30;
+const POST_COOLDOWN_SECONDS = 10;
 const IP_POST_LIMIT = { max: 3, windowSeconds: 600 };
+const DELETE_SCOPE = "guestbook-delete";
 const DELETE_COOLDOWN_SECONDS = 5;
-const MAX_DELETE_FAILURES = 5;
+const IP_DELETE_LIMIT = { max: 10, windowSeconds: 600 };
+// 한 글에 시도가 이만큼 쌓이면 잠시 잠근다 (영구 잠금이면 아무나 남의 글을 못 지우게 만들 수 있음)
+const MAX_DELETE_ATTEMPTS = 5;
+const DELETE_LOCK_SECONDS = 900;
 
 export async function createEntry(_prevState, formData) {
   // 봇에게 차단 사실을 알리지 않으려고 성공처럼 응답하고 저장하지 않는다
@@ -23,14 +27,13 @@ export async function createEntry(_prevState, formData) {
 
   try {
     const ipHash = await getClientIpHash();
-    if (await isIpRateLimited(POST_SCOPE, ipHash, IP_POST_LIMIT)) {
+    if (!(await tryReserveSubmission(POST_SCOPE, ipHash, IP_POST_LIMIT))) {
       return { status: "error", code: "rateLimited", values: parsed.values };
     }
     const passwordHash = await hashPassword(parsed.password);
     const db = createSupabaseAdminClient();
     const { error } = await db.from("guestbook_entries").insert({ nickname: parsed.values.nickname, message: parsed.values.message, password_hash: passwordHash });
     if (error) throw new Error(`${error.code ?? "unknown"}: ${error.message}`);
-    await recordSubmission(POST_SCOPE, ipHash);
   } catch (error) {
     console.error("[guestbook:create]", error);
     return { status: "error", code: "server", values: parsed.values };
@@ -44,26 +47,29 @@ export async function createEntry(_prevState, formData) {
 export async function deleteEntry(_prevState, formData) {
   const parsed = parseDeleteInput(formData);
   if (!parsed.ok) return { status: "error", code: parsed.code };
-  if (await isCoolingDown("guestbook-delete")) return { status: "error", code: "tooFast" };
+  if (await isCoolingDown(DELETE_SCOPE)) return { status: "error", code: "tooFast" };
 
   try {
+    // scrypt 전에 IP 제한을 먼저 걸어 비싼 해시 계산을 아무나 반복시키지 못하게 한다
+    const ipHash = await getClientIpHash();
+    if (!(await tryReserveSubmission(DELETE_SCOPE, ipHash, IP_DELETE_LIMIT))) return { status: "error", code: "deleteRateLimited" };
+
+    // 시도 횟수를 확인 전에 원자적으로 올린다. 동시 요청도 한 글에 MAX_DELETE_ATTEMPTS번을 넘지 못한다.
     const db = createSupabaseAdminClient();
-    const { data: row, error } = await db.from("guestbook_entries").select("id, password_hash, delete_failures").eq("id", parsed.id).maybeSingle();
+    const { data: attempt, error } = await db
+      .rpc("guestbook_reserve_delete_attempt", { p_id: parsed.id, p_max: MAX_DELETE_ATTEMPTS, p_lock_seconds: DELETE_LOCK_SECONDS })
+      .maybeSingle();
     if (error) throw new Error(`${error.code ?? "unknown"}: ${error.message}`);
-    if (!row) return { status: "error", code: "notFound" };
-    // 비밀번호 무차별 대입을 막으려고 실패 횟수를 DB에 남긴다 (쿠키를 지워도 우회 불가)
-    if (row.delete_failures >= MAX_DELETE_FAILURES) return { status: "error", code: "locked" };
+    if (!attempt) throw new Error("guestbook_reserve_delete_attempt returned no row");
+    if (attempt.status === "notFound") return { status: "error", code: "notFound" };
+    if (attempt.status === "locked") return { status: "error", code: "locked" };
+    if (attempt.status !== "allowed") throw new Error(`unexpected attempt status: ${attempt.status}`);
 
-    const matches = await verifyPassword(parsed.password, row.password_hash);
-    await startCooldown("guestbook-delete", DELETE_COOLDOWN_SECONDS);
+    const matches = await verifyPassword(parsed.password, attempt.password_hash);
+    await startCooldown(DELETE_SCOPE, DELETE_COOLDOWN_SECONDS);
+    if (!matches) return { status: "error", code: "wrongPassword" };
 
-    if (!matches) {
-      const { error: updateError } = await db.from("guestbook_entries").update({ delete_failures: row.delete_failures + 1 }).eq("id", row.id);
-      if (updateError) throw new Error(`${updateError.code ?? "unknown"}: ${updateError.message}`);
-      return { status: "error", code: "wrongPassword" };
-    }
-
-    const { error: deleteError } = await db.from("guestbook_entries").delete().eq("id", row.id);
+    const { error: deleteError } = await db.from("guestbook_entries").delete().eq("id", parsed.id);
     if (deleteError) throw new Error(`${deleteError.code ?? "unknown"}: ${deleteError.message}`);
   } catch (error) {
     console.error("[guestbook:delete]", error);

@@ -2,7 +2,7 @@
 
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { sendNotificationEmail } from "@/lib/email/sendNotificationEmail";
-import { isHoneypotFilled, isCoolingDown, startCooldown, getClientIpHash, isIpRateLimited, recordSubmission } from "@/lib/forms/spamGuard";
+import { isHoneypotFilled, isCoolingDown, startCooldown, getClientIpHash, tryReserveSubmission } from "@/lib/forms/spamGuard";
 import { parseInquiryInput } from "./validation";
 import { buildInquiryEmail } from "./inquiryEmail";
 
@@ -21,14 +21,13 @@ export async function submitInquiry(_prevState, formData) {
   let createdAt;
   try {
     const ipHash = await getClientIpHash();
-    if (await isIpRateLimited(SCOPE, ipHash, IP_LIMIT)) {
+    if (!(await tryReserveSubmission(SCOPE, ipHash, IP_LIMIT))) {
       return { status: "error", code: "rateLimited", values: parsed.values };
     }
     const db = createSupabaseAdminClient();
     const { data, error } = await db.from("sponsorship_inquiries").insert(parsed.values).select("created_at").single();
     if (error) throw new Error(`${error.code ?? "unknown"}: ${error.message}`);
     createdAt = data.created_at;
-    await recordSubmission(SCOPE, ipHash);
   } catch (error) {
     console.error("[sponsorship:save]", error);
     return { status: "error", code: "server", values: parsed.values };
