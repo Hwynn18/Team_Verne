@@ -63,7 +63,7 @@ lib/validation/ slug, page 번호 검증
 - 이미지: Supabase Storage 공개 버킷, DB에는 파일명만. 허용 버킷은 `next.config.mjs`의 IMAGE_BUCKETS와 각 URL 함수에 같이 등록.
 - Server Action 출처 허용(allowedOrigins)은 Codespaces에서만 켜지고 로컬/배포에서는 비어 있음.
 
-## 5. Supabase (스키마는 SQL Editor에서 직접 만들었고 저장소에 SQL 파일은 없음)
+## 5. Supabase (기본 스키마는 SQL Editor에서 직접 만들었고 저장소에 없음. 2026-11-09 이후 추가분은 `docs/sql/`)
 
 모든 테이블 RLS 켜짐. anon은 공개 테이블 SELECT만, 쓰기 권한 회수.
 - 공개 읽기: `projects`, `news`(published_at <= now()만), `departments`, `project_departments`, `members`,
@@ -72,6 +72,11 @@ lib/validation/ slug, page 번호 검증
   `submission_log`(IP는 HMAC 해시, 24시간 보관)
 - 공개 버킷: `project-covers`, `member-photos`, `news-images`, `team-gallery` (jpg/png/webp, 2MB, 쓰기 정책 없음)
 - 주요 CHECK: slug `^[a-z0-9-]+$`, 이미지 파일명 규칙, 글자 수 제한. 코드 검증 상수와 값을 맞춘다.
+- `docs/sql/` (번호 순서대로 SQL Editor에서 실행, 새 환경 만들 때 다시 실행):
+  - `001` `guestbook_reserve_delete_attempt` RPC + `guestbook_entries.delete_locked_until` (삭제 시도 원자 예약, 5회 → 15분 잠금)
+  - `002` `submission_try_reserve` RPC + 인덱스 (IP 제한 확인·기록 원자화, 부작용 전에 호출)
+  - `003` pg_cron: submission_log 24시간 정리(매시), cron.job_run_details 7일 정리
+  - RPC는 둘 다 anon/authenticated 실행 권한 회수, service_role만. 코드가 이 함수에 의존하므로 SQL 먼저, 배포 나중.
 
 ## 6. 환경변수 (.env.local, 절대 커밋 금지 · 채팅에 붙이지 않기)
 
@@ -106,10 +111,21 @@ Projects(파트 필터·상세), 방명록(허니팟·쿨다운·IP 제한·삭�
 - 소식: 샘플 15개와 sample-news.jpg 삭제. "이휘성 전역 D-19"(team, 전역일 2026-11-02) 1개만 있음. D-19는 고정 글자.
 - 팀 역사: 사용자가 이미 채움. 프로젝트: 진행 중인 게 없어서 샘플 그대로 둠.
 
+보안 감사 (2026-11-09, cloudflare security-audit 스킬 standard, 소스 검토만. 보고서: `~/security-audit-skill/Team_Verne/run-1/REPORT.md`):
+- 확정 0건(샌드박스 없어 실행 검증 불가), needs_validation 6건. 그중 4건은 커밋 0f30e21에서 고침:
+  삭제 잠금 경쟁 조건·영구 잠금 괴롭히기·삭제 scrypt 부하(001 RPC + 삭제 IP 제한 10/10분),
+  IP 제한 경쟁 조건(002 RPC), 뉴스 캐시 키 무한 증가(slug 목록으로 먼저 거름).
+- 같이 반영: 보안 헤더(HSTS, frame-ancestors, nosniff 등), env.js server-only, 동의 문구 "암호화"→"해시",
+  방명록 글쓰기 쿨다운 30초→10초.
+- 남은 것: x-forwarded-for 맨 왼쪽 값 신뢰(배포 플랫폼 정해지면 `lib/forms/spamGuard.js` getClientIpHash만 수정),
+  news RLS 정책 실제 내용 확인(`pg_policy` 조회), 의존성 `npm audit`(네트워크 되는 곳에서).
+- 보류: 전체 CSP(nonce + proxy.js 필요).
+
 다음 순서: **남은 내용 입력 → 배포**
 - 갤러리: 사진 준비되면 `team-gallery` 버킷 업로드 + `gallery_photos` 등록, 샘플 사진 정리.
 - 배포 직전 정리: sample-* 프로젝트, member-photos 버킷의 sample-member-a.jpg, missing.jpg 테스트 값.
-- 배포 때 확인: x-forwarded-for 신뢰 여부(IP 제한), 환경변수 7개 이관, allowedOrigins 비어 있는지.
+- 배포 때 확인: x-forwarded-for 신뢰 여부(IP 제한), 환경변수 7개 이관, allowedOrigins 비어 있는지,
+  `docs/sql/` 적용 여부, HSTS는 첫 배포부터 2년 고정이니 http 전용 하위 도메인 없는지.
 - Supabase 무료 플랜은 오래 안 쓰면 정지됨. 정지 중엔 `*.supabase.co`가 DNS에서 안 풀려 `fetch failed`가 남 → 대시보드에서 Resume.
 
 미뤄둔 제안(사용자가 아직 고르지 않음): 한/영 404 페이지, 프로젝트 상세 본문·기간, 입력칸 테두리 대비 강화,
