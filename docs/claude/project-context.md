@@ -26,8 +26,6 @@
   Teams(팀 분위기·팀 역사·파트) / Projects / 팀 응원 방명록 / 스폰서십 & 스폰서 문의
 - 좌측 사이드바 내비. 상위 메뉴(About, Teams)는 hover/탭 시 하위 메뉴만 열고 페이지 이동 없음.
 - KO/EN 전환: 쿠키 `locale`, 사전은 `lib/i18n/dictionaries/{ko,en}.js`
-- 스택: Next.js 16 (App Router, JavaScript, Turbopack), CSS Modules, Supabase(PostgreSQL), Resend(메일)
-- 패키지: @supabase/supabase-js, server-only, react-markdown, remark-gfm, remark-breaks, motion, pretendard
 
 ## 3. 디자인
 
@@ -46,14 +44,6 @@
 
 app/ 라우트만 얇게. 실제 화면은 features/에서 가져온다
 features/<기능>/ 기능별 코드 (layout, home, about, teams, projects, guestbook, sponsorship)
-lib/config/ site.js(이름·로고·인스타), env.js(환경변수 검증), fonts.js
-lib/supabase/ server.js(anon, 읽기용), admin.js(service_role, Server Action 전용)
-lib/cache/ cachedQuery.js: createCachedQuery / createCachedFn (60초 캐시, 태그 supabase-data)
-lib/i18n/ 사전, getDictionary, pickLocalized(row, field, locale), formatDate
-lib/forms/ 허니팟, 쿠키 쿨다운, IP 해시 제한(spamGuard), 개인정보 동의, 폼 공용 CSS
-lib/storage/ 공개 버킷 이미지 URL 생성·파일명 검증
-lib/ui/ Pagination
-lib/validation/ slug, page 번호 검증
 
 
 - DB 읽기: 공개 데이터는 `createCachedQuery`/`createCachedFn` + anon 클라이언트. 실패는 `{ failed: true }`로 섹션만 안내 문구.
