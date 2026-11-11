@@ -19,20 +19,82 @@
   font-size: var(--text-xl);
 }
 
+.introHero {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.introSlogan {
+  margin: 0;
+  font-size: clamp(56px, 11vw, 160px);
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.introSloganFull {
+  margin: 16px 0 0;
+  font-size: var(--text-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+}
+
 .introSection {
-  padding: 28px;
-  border: 1px solid var(--color-border);
+  max-width: 720px;
+  padding: 64px 0;
+}
+
+.introText {
+  margin: 0;
+  font-size: var(--text-md);
+  line-height: 1.8;
+  color: var(--color-text-muted);
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.introPhotos {
+  display: grid;
+  gap: 16px;
+}
+
+.introPhotos[data-count="2"] { grid-template-columns: 1fr 1fr; }
+
+/* 사진이 없거나 실패하면 이 회색 면만 보인다 */
+.introPhoto {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
   border-radius: var(--radius-md);
   background: var(--color-surface);
 }
 
-.introSection .sectionTitle { margin-bottom: 12px; }
+.introPhotos[data-count="2"] .introPhoto { aspect-ratio: 4 / 5; }
 
-.introText {
-  margin: 0;
-  line-height: 1.8;
-  white-space: pre-line;
-  overflow-wrap: anywhere;
+/* 패럴랙스로 위아래 8%씩 움직여도 빈틈이 안 보이게 액자보다 크게 둔다 */
+.introPhotoInner {
+  position: absolute;
+  inset: -10% 0;
+}
+
+.introPhotoImage { object-fit: cover; }
+
+.introManifesto { max-width: none; }
+
+.introManifesto .introText {
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+.introManifestoClosing {
+  margin: 24px 0 0;
+  font-size: var(--text-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-strong);
 }
 
 .memberGrid {
@@ -231,15 +293,18 @@
     gap: 24px;
   }
 
-  .introSection { padding: 20px; }
+  .introHero { min-height: 50vh; }
+  .introSection { padding: 40px 0; }
+  .introPhotos[data-count="2"] { grid-template-columns: 1fr; }
+  .introManifesto .introText { font-size: var(--text-lg); }
   .embed { height: 640px; }
 }
 
 .introLabel { margin: 0 0 12px; }
 
 .introHeadline {
-  margin: 0 0 12px;
-  font-size: var(--text-xl);
+  margin: 0 0 20px;
+  font-size: var(--text-2xl);
   font-weight: var(--font-weight-bold);
   line-height: 1.35;
   overflow-wrap: anywhere;
