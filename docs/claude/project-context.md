@@ -113,6 +113,8 @@ Projects(파트 필터·상세), 방명록(허니팟·쿨다운·IP 제한·삭�
 
 다음 순서: **남은 내용 입력 → 배포**
 - 갤러리: 사진 준비되면 `team-gallery` 버킷 업로드 + `gallery_photos` 등록, 샘플 사진 정리.
+- 팀 소개(About > 팀 소개) 사진: `public/about/`에 `about-1.jpg`(16:9), `mission-1.jpg`·`mission-2.jpg`(4:5) 넣기.
+  장수·이름 바꾸면 `features/about/IntroPage.js`의 `PHOTOS`만 수정. 없으면 회색 칸으로 보임.
 - 배포 직전 정리: sample-* 프로젝트, member-photos 버킷의 sample-member-a.jpg, missing.jpg 테스트 값.
 - 배포 때 확인: x-forwarded-for 신뢰 여부(IP 제한), 환경변수 7개 이관, allowedOrigins 비어 있는지,
   `docs/sql/` 적용 여부, HSTS는 첫 배포부터 2년 고정이니 http 전용 하위 도메인 없는지.
