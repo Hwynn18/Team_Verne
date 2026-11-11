@@ -14,6 +14,7 @@ export function Reveal({ as = "div", className, children }) {
   return (
     <Tag
       ref={ref}
+      data-reveal=""
       className={className}
       initial={reduceMotion ? false : { opacity: 0, y: 32 }}
       animate={visible ? { opacity: 1, y: 0 } : {}}

@@ -20,8 +20,8 @@ function getText(labels, key) {
 function Section({ id, labels }) {
   return (
     <Reveal as="section" className={styles.introSection}>
-      <h2 className={`eyebrow ${styles.introLabel}`}>{getText(labels, `${id}Title`)}</h2>
-      <p className={styles.introHeadline}>{getText(labels, `${id}Headline`)}</p>
+      <p className={`eyebrow ${styles.introLabel}`}>{getText(labels, `${id}Title`)}</p>
+      <h2 className={styles.introHeadline}>{getText(labels, `${id}Headline`)}</h2>
       <p className={styles.introText}>{getText(labels, id)}</p>
     </Reveal>
   );
@@ -44,6 +44,10 @@ export default async function IntroPage() {
 
   return (
     <main className={styles.page}>
+      {/* JS가 없으면 Reveal의 처음 상태(투명)가 풀리지 않으니 바로 보이게 한다 */}
+      <noscript>
+        <style>{"[data-reveal]{opacity:1!important;transform:none!important}"}</style>
+      </noscript>
       <hgroup className={styles.introHero}>
         <p className="eyebrow">{t.nav.aboutIntro}</p>
         <h1 className={styles.introSlogan}>{siteConfig.name}</h1>
@@ -57,8 +61,8 @@ export default async function IntroPage() {
       <Photos srcs={PHOTOS.mission} />
 
       <Reveal as="section" className={`${styles.introSection} ${styles.introManifesto}`}>
-        <h2 className={`eyebrow ${styles.introLabel}`}>{getText(labels, "manifestoTitle")}</h2>
-        <p className={styles.introHeadline}>{getText(labels, "manifestoHeadline")}</p>
+        <p className={`eyebrow ${styles.introLabel}`}>{getText(labels, "manifestoTitle")}</p>
+        <h2 className={styles.introHeadline}>{getText(labels, "manifestoHeadline")}</h2>
         <p className={styles.introText}>{getText(labels, "manifesto")}</p>
         <p className={styles.introManifestoClosing}>{sloganFull}</p>
       </Reveal>
