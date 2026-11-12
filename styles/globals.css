@@ -44,6 +44,11 @@ h3 { font-weight: var(--font-weight-semibold); }
 h1,
 h2 { letter-spacing: -0.02em; }
 
+/* 한글 제목이 글자 중간에서 끊기지 않게 어절 단위로 줄바꿈 */
+h1,
+h2,
+h3 { word-break: keep-all; }
+
 /* 제목 위 작은 라벨 (섹션 이름, 상위 메뉴 이름) */
 .eyebrow {
   font-size: var(--text-xs);

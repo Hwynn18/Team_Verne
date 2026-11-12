@@ -62,21 +62,18 @@
   padding: 12px 24px;
   border: 0;
   border-radius: var(--radius-sm);
-  background: var(--color-text);
-  color: var(--color-bg);
+  background: var(--color-primary);
+  color: var(--color-on-primary);
   font: inherit;
   font-weight: 700;
   cursor: pointer;
 }
 
 .button {
-  transition: background-color 0.15s, color 0.15s;
+  transition: background-color 0.15s;
 }
 
-.button:hover:not(:disabled) {
-  background: var(--color-primary);
-  color: var(--color-on-primary);
-}
+.button:hover:not(:disabled) { background: var(--color-primary-hover); }
 
 .button:disabled {
   opacity: 0.6;

@@ -7,7 +7,8 @@
   gap: 32px;
 }
 
-.pageNarrow { max-width: 860px; }
+/* 틀은 1080px 그대로(왼쪽 시작점 통일), 내용만 좁게 */
+.pageNarrow > * { max-width: 780px; }
 
 .title {
   margin: 0;

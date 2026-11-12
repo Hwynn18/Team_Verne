@@ -197,4 +197,7 @@
     flex-direction: column;
     gap: 4px;
   }
+
+  /* 세로 배치에선 110px 기준값이 높이로 먹으니 해제 */
+  .updateDate { flex-basis: auto; }
 }

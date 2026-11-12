@@ -1,11 +1,14 @@
+/* 틀은 다른 페이지와 같은 1080px(왼쪽 시작점 통일), 내용만 좁게 */
 .page {
-  max-width: 860px;
+  max-width: 1080px;
   margin: 0 auto;
   padding: 48px 40px 72px;
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
+
+.page > * { max-width: 780px; }
 
 .title {
   margin: 0;
