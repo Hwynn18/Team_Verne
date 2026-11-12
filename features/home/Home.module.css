@@ -7,17 +7,32 @@
   gap: 56px;
 }
 
-.srOnly {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+/* 첫 화면: 팀 이름과 슬로건 (About > 팀 소개 히어로와 같은 톤) */
+.hero { padding-top: 24px; }
+
+.heroTitle {
+  margin: 0;
+  font-size: clamp(56px, 9vw, 128px);
+  line-height: 1;
 }
+
+.heroSlogan {
+  margin: 16px 0 20px;
+  font-size: var(--text-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+}
+
+/* 배너 버튼과 한 화면에 같이 보이니 보조 링크로 둔다 */
+.heroLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary-strong);
+}
+
+.heroLink:hover { text-decoration: underline; }
 
 .sectionTitle {
   margin: 0 0 20px;

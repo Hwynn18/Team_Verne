@@ -144,7 +144,8 @@
 .social:hover { color: var(--color-primary-strong); }
 
 .menuButton,
-.backdrop { display: none; }
+.backdrop,
+.mobileLogo { display: none; }
 
 /* 터치 전용 기기(태블릿 등)에서는 탭으로 하위 메뉴를 연다 */
 @media (hover: none) and (min-width: 769px) {
@@ -157,6 +158,16 @@
 
 /* 모바일: 사이드바를 왼쪽에서 밀려 나오는 패널로, 하위 메뉴는 아코디언으로 */
 @media (max-width: 768px) {
+  /* 메뉴 버튼(top 12px, 44px)과 같은 줄. 페이지와 같이 스크롤된다 */
+  .mobileLogo {
+    position: absolute;
+    top: 12px;
+    left: 20px;
+    display: inline-flex;
+    align-items: center;
+    height: 44px;
+  }
+
   .menuButton {
     position: fixed;
     top: 12px;

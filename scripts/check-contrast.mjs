@@ -25,7 +25,6 @@ const PAIRS = [
   ["--color-danger", "--color-bg", TEXT, "에러 글자"],
   ["--color-danger", "--color-danger-soft", TEXT, "에러 안내 박스"],
   ["--color-on-danger", "--color-danger", TEXT, "삭제 버튼 글자"],
-  ["--color-bg", "--color-text", TEXT, "반전 버튼 (남기기, 인스타그램에서 보기)"],
 ];
 
 function readTokens(path) {

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { siteConfig } from "@/lib/config/site";
 import { getDictionary } from "@/lib/i18n/server";
 import { getActiveProject, getFeaturedProjects, getLatestNews } from "./homeQueries";
@@ -12,7 +13,11 @@ export default async function HomePage() {
 
   return (
     <main className={styles.home}>
-      <h1 className={styles.srOnly}>{siteConfig.name}</h1>
+      <hgroup className={styles.hero}>
+        <h1 className={styles.heroTitle}>{siteConfig.name}</h1>
+        <p className={styles.heroSlogan}>{t.about.intro.sloganFull}</p>
+        <Link href="/about/intro" className={styles.heroLink}>{t.home.introLink} →</Link>
+      </hgroup>
       <ActiveProjectBanner result={active} locale={locale} labels={t.home} />
       <FeaturedProjects result={featured} locale={locale} labels={t.home} />
       <LatestUpdates result={news} locale={locale} labels={t.home} />
