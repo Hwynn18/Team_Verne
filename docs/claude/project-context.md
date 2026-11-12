@@ -99,7 +99,9 @@ Projects(파트 필터·상세), 방명록(허니팟·쿨다운·IP 제한·삭�
 - 멤버: 이휘성(기획·개발 파트 리더, lee.jpg), 윤태중(기획·디자인, yoon.jpg), 개발 1자리는 `공석`/`Vacant`.
   Teams 파트 페이지도 같은 members 테이블을 읽어서 같이 바뀜.
 - 소식: 샘플 15개와 sample-news.jpg 삭제. "이휘성 전역 D-19"(team, 전역일 2026-11-02) 1개만 있음. D-19는 고정 글자.
-- 팀 역사: 사용자가 이미 채움. 프로젝트: 진행 중인 게 없어서 샘플 그대로 둠.
+- 팀 역사: 사용자가 이미 채움.
+- 샘플 정리 (2026-11-12): sample-* 프로젝트 4개(+project_departments, project-covers의 sample-active.jpg, missing.jpg 값),
+  방명록 테스트 글 2개, member-photos의 sample-member-a.jpg 삭제. 프로젝트·방명록은 지금 비어 있음(빈 상태 안내 문구가 보임).
 
 보안 감사 (2026-11-09, cloudflare security-audit 스킬 standard, 소스 검토만. 보고서: `~/security-audit-skill/Team_Verne/run-1/REPORT.md`):
 - 확정 0건(샌드박스 없어 실행 검증 불가), needs_validation 6건. 그중 4건은 커밋 0f30e21에서 고침:
@@ -115,7 +117,7 @@ Projects(파트 필터·상세), 방명록(허니팟·쿨다운·IP 제한·삭�
 - 갤러리: 사진 준비되면 `team-gallery` 버킷 업로드 + `gallery_photos` 등록, 샘플 사진 정리.
 - 팀 소개(About > 팀 소개) 사진: `public/about/`에 `about-1.jpg`(16:9), `mission-1.jpg`·`mission-2.jpg`(4:5) 넣기.
   장수·이름 바꾸면 `features/about/IntroPage.js`의 `PHOTOS`만 수정. 없으면 회색 칸으로 보임.
-- 배포 직전 정리: sample-* 프로젝트, member-photos 버킷의 sample-member-a.jpg, missing.jpg 테스트 값.
+- 프로젝트: 실제 프로젝트가 생기면 `projects` 등록(표지는 `project-covers` 버킷).
 - 배포 때 확인: x-forwarded-for 신뢰 여부(IP 제한), 환경변수 7개 이관, allowedOrigins 비어 있는지,
   `docs/sql/` 적용 여부, HSTS는 첫 배포부터 2년 고정이니 http 전용 하위 도메인 없는지.
 - Supabase 무료 플랜은 오래 안 쓰면 정지됨. 정지 중엔 `*.supabase.co`가 DNS에서 안 풀려 `fetch failed`가 남 → 대시보드에서 Resume.
