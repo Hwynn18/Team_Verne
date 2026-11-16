@@ -23,7 +23,7 @@
 
 - 팀 이름: **Team WV** (예전 표기 Team Verne는 폐기). 인스타그램: teamwv_05
 - 기획서: 프로젝트 파일 MyTeam.docx 기준. 메뉴: Home / About(팀 소개·파트별 멤버·소셜·소식) /
-  Teams(팀 분위기·팀 역사·파트) / Projects / 팀 응원 방명록 / 스폰서십 & 스폰서 문의
+  Teams(팀 분위기·팀 역사. 파트 페이지는 About 파트별 멤버 소개와 겹쳐서 2026-11-16 삭제) / Projects / 팀 응원 방명록 / 스폰서십 & 스폰서 문의
 - 좌측 사이드바 내비. 상위 메뉴(About, Teams)는 hover/탭 시 하위 메뉴만 열고 페이지 이동 없음.
 - KO/EN 전환: 쿠키 `locale`, 사전은 `lib/i18n/dictionaries/{ko,en}.js`
 
@@ -97,7 +97,6 @@ Projects(파트 필터·상세), 방명록(허니팟·쿨다운·IP 제한·삭�
 
 실제 내용 입력 (2026-10-14):
 - 멤버: 이휘성(기획·개발 파트 리더, lee.jpg), 윤태중(기획·디자인, yoon.jpg), 개발 1자리는 `공석`/`Vacant`.
-  Teams 파트 페이지도 같은 members 테이블을 읽어서 같이 바뀜.
 - 소식: 샘플 15개와 sample-news.jpg 삭제. "이휘성 전역 D-19"(team, 전역일 2026-11-02) 1개만 있음. D-19는 고정 글자.
 - 팀 역사: 사용자가 이미 채움.
 - 샘플 정리 (2026-11-12): sample-* 프로젝트 4개(+project_departments, project-covers의 sample-active.jpg, missing.jpg 값),

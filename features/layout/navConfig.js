@@ -14,7 +14,6 @@ export const NAV_ITEMS = [
     children: [
       { key: "teamsAmbience", href: "/teams/ambience" },
       { key: "teamsHistory", href: "/teams/history" },
-      { key: "teamsDepartment", href: "/teams/department" },
     ],
   },
   { key: "projects", href: "/projects" },
