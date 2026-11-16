@@ -64,7 +64,7 @@ features/<기능>/ 기능별 코드 (layout, home, about, teams, projects, guest
 ## 5. Supabase (기본 스키마는 SQL Editor에서 직접 만들었고 저장소에 없음. 2026-11-09 이후 추가분은 `docs/sql/`)
 
 모든 테이블 RLS 켜짐. anon은 공개 테이블 SELECT만, 쓰기 권한 회수.
-- 공개 읽기: `projects`, `news`(published_at <= now()만), `departments`, `project_departments`, `members`,
+- 공개 읽기: `projects`, `news`(published_at <= now()만), `departments`, `project_departments`, `project_members`, `members`,
   `history_events`, `gallery_photos`
 - anon 접근 완전 차단(관리자 키로만): `guestbook_entries`(password_hash는 scrypt), `sponsorship_inquiries`,
   `submission_log`(IP는 HMAC 해시, 24시간 보관)
@@ -74,6 +74,7 @@ features/<기능>/ 기능별 코드 (layout, home, about, teams, projects, guest
   - `001` `guestbook_reserve_delete_attempt` RPC + `guestbook_entries.delete_locked_until` (삭제 시도 원자 예약, 5회 → 15분 잠금)
   - `002` `submission_try_reserve` RPC + 인덱스 (IP 제한 확인·기록 원자화, 부작용 전에 호출)
   - `003` pg_cron: submission_log 24시간 정리(매시), cron.job_run_details 7일 정리
+  - `004` `project_members` 테이블(project_id, member_id) + anon SELECT만. 프로젝트 상세에 "만든 사람" 표시. 코드가 같이 조회하므로 없으면 Projects 전체가 에러 안내로 보임
   - RPC는 둘 다 anon/authenticated 실행 권한 회수, service_role만. 코드가 이 함수에 의존하므로 SQL 먼저, 배포 나중.
 
 ## 6. 환경변수 (.env.local, 절대 커밋 금지 · 채팅에 붙이지 않기)

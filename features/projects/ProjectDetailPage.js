@@ -9,6 +9,7 @@ import { getCoverUrl } from "./coverUrl";
 import CoverImage from "./CoverImage";
 import StatusBadge from "./StatusBadge";
 import DepartmentTags from "./DepartmentTags";
+import ProjectMembers from "./ProjectMembers";
 import ProjectsMessage from "./ProjectsMessage";
 import styles from "./Projects.module.css";
 
@@ -50,6 +51,7 @@ export default async function ProjectDetailPage({ slug }) {
         <StatusBadge status={project.status} labels={labels} />
         <DepartmentTags departments={project.departments} locale={locale} label={labels.departmentsLabel} />
       </div>
+      <ProjectMembers members={project.members} locale={locale} label={labels.membersLabel} />
       <p className={styles.detailSummary}>{pickLocalized(project, "summary", locale)}</p>
     </main>
   );

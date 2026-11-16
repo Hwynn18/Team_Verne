@@ -197,6 +197,28 @@
   gap: 12px;
 }
 
+.credits {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+}
+
+.creditsLabel {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.creditList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  font-weight: 600;
+}
+
 .detailSummary {
   margin: 0;
   font-size: var(--text-lg);
