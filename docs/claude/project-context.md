@@ -117,7 +117,8 @@ Projects(파트 필터·상세), 방명록(허니팟·쿨다운·IP 제한·삭�
 - 같이 반영: 보안 헤더(HSTS, frame-ancestors, nosniff 등), env.js server-only, 동의 문구 "암호화"→"해시",
   방명록 글쓰기 쿨다운 30초→10초.
 - 남은 것: x-forwarded-for 맨 왼쪽 값 신뢰(배포 플랫폼 정해지면 `lib/forms/spamGuard.js` getClientIpHash만 수정).
-- news RLS (2026-11-16): 미래 날짜 테스트 글로 확인, anon에 안 보임·anon 쓰기 401. 정책 원문은 안 봄.
+- news RLS (2026-11-16): RLS 켜짐(force는 꺼짐, Supabase 기본). 정책은 `news public read` 하나(SELECT, anon,
+  `published_at <= now()`). 쓰기 정책 없음. 미래 날짜 테스트 글로 확인: anon에 안 보임, anon 쓰기 401.
 - npm audit (2026-11-16): next 16.3.5→16.4.6, sharp·zod·source-map-js 패치. 남은 moderate 7건은 typescript-eslint 안 minimatch(개발 도구, 상위 수정판 없음).
 - 보류: 전체 CSP(nonce + proxy.js 필요).
 
