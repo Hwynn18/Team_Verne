@@ -109,7 +109,8 @@ Projects(파트 필터·상세), 방명록(허니팟·쿨다운·IP 제한·삭�
 - 같이 반영: 보안 헤더(HSTS, frame-ancestors, nosniff 등), env.js server-only, 동의 문구 "암호화"→"해시",
   방명록 글쓰기 쿨다운 30초→10초.
 - 남은 것: x-forwarded-for 맨 왼쪽 값 신뢰(배포 플랫폼 정해지면 `lib/forms/spamGuard.js` getClientIpHash만 수정),
-  news RLS 정책 실제 내용 확인(`pg_policy` 조회), 의존성 `npm audit`(네트워크 되는 곳에서).
+  news RLS 정책 실제 내용 확인(`pg_policy` 조회).
+- npm audit (2026-11-16): next 16.3.5→16.4.6, sharp·zod·source-map-js 패치. 남은 moderate 7건은 typescript-eslint 안 minimatch(개발 도구, 상위 수정판 없음).
 - 보류: 전체 CSP(nonce + proxy.js 필요).
 
 다음 순서: **남은 내용 입력 → 배포**
