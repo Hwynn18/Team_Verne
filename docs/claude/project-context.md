@@ -47,6 +47,7 @@ features/<기능>/ 기능별 코드 (layout, home, about, teams, projects, guest
 
 
 - DB 읽기: 공개 데이터는 `createCachedQuery`/`createCachedFn` + anon 클라이언트. 실패는 `{ failed: true }`로 섹션만 안내 문구.
+  캐시 label 중복 검사는 production에서만(dev는 hot reload로 같은 label이 다시 들어옴). 진짜 중복은 `npm run build`에서 잡힘.
 - DB 쓰기: 반드시 Server Action(`"use server"`)에서 검증 후 `createSupabaseAdminClient()`. 브라우저에서 직접 쓰기 금지.
 - 다국어 컬럼은 `<field>_ko`, `<field>_en`. 사전에 없는 키·컬럼은 렌더링 때 에러(오타를 바로 잡기 위해 의도적).
 - 캐시 즉시 무효화: `POST /api/revalidate` + `Authorization: Bearer $REVALIDATE_SECRET`.
@@ -109,7 +110,9 @@ Projects(파트 필터·상세), 방명록(허니팟·쿨다운·IP 제한·삭�
 - 소식: 샘플 15개와 sample-news.jpg 삭제. "이휘성 전역 D-19"(team, 전역일 2026-11-02) 1개만 있음. D-19는 고정 글자.
 - 팀 역사: 사용자가 이미 채움.
 - 샘플 정리 (2026-11-12): sample-* 프로젝트 4개(+project_departments, project-covers의 sample-active.jpg, missing.jpg 값),
-  방명록 테스트 글 2개, member-photos의 sample-member-a.jpg 삭제. 프로젝트·방명록은 지금 비어 있음(빈 상태 안내 문구가 보임).
+  방명록 테스트 글 2개, member-photos의 sample-member-a.jpg 삭제. 방명록은 지금 비어 있음(빈 상태 안내 문구가 보임).
+- 프로젝트 (2026-11-16): `first-project` "TeamWV 웹페이지" 1개. active + is_featured(홈 배너·대표 칸 둘 다),
+  표지 first_project_cover.png, 파트 디자인·개발(기획은 빠져 있음, 의도인지 사용자 확인 전), 만든 사람 윤태중·이휘성.
 
 보안 감사 (2026-11-09, cloudflare security-audit 스킬 standard, 소스 검토만. 보고서: `~/security-audit-skill/Team_Verne/run-1/REPORT.md`):
 - 확정 0건(샌드박스 없어 실행 검증 불가), needs_validation 6건. 그중 4건은 커밋 0f30e21에서 고침:
@@ -127,9 +130,12 @@ Projects(파트 필터·상세), 방명록(허니팟·쿨다운·IP 제한·삭�
 - 갤러리: 사진 추가는 `team-gallery` 버킷 업로드 + `gallery_photos` 등록. 샘플 3개(행·파일) 2026-11-16 삭제, 실제 사진 1장 있음.
 - 팀 소개(About > 팀 소개) 사진: Supabase `team-gallery` 버킷에 `about-1.jpg`(16:9), `mission-1.jpg`·`mission-2.jpg`(4:5) 업로드(DB 등록 없음, 배포 불필요). 같은 이름으로 교체하면 이미지 캐시 때문에 최대 4시간 늦게 바뀜.
   장수·이름 바꾸면 `features/about/IntroPage.js`의 `PHOTOS`만 수정. 없으면 회색 칸으로 보임.
-- 프로젝트: 실제 프로젝트가 생기면 `projects` 등록(표지는 `project-covers` 버킷).
+- 프로젝트 추가: 표지 `project-covers` 업로드 → `projects` 행(status `active`/`completed`, is_featured, sort_order, cover_path는 파일명만)
+  → `project_departments`(파트), `project_members`(만든 사람)에 연결 행. 진행 중 배너는 active 중 sort_order 가장 작은 1개,
+  대표는 is_featured 최대 3개. 만든 사람은 파트 순서(기획→디자인→개발) 다음 멤버 순서로 표시되고, 멤버가 파트별 행이라 어느 행을 연결하느냐로 위치가 정해짐.
 - 배포 때 확인: x-forwarded-for 신뢰 여부(IP 제한), 환경변수 7개 이관, allowedOrigins 비어 있는지,
   `docs/sql/` 적용 여부, HSTS는 첫 배포부터 2년 고정이니 http 전용 하위 도메인 없는지.
+  배포 후 `/api/revalidate` 200 확인(로컬 프로덕션에서 원인 불명 500 한 번, 재빌드 후 재현 안 됨).
 - Supabase 무료 플랜은 오래 안 쓰면 정지됨. 정지 중엔 `*.supabase.co`가 DNS에서 안 풀려 `fetch failed`가 남 → 대시보드에서 Resume.
 
 미뤄둔 제안(사용자가 아직 고르지 않음): 한/영 404 페이지, 프로젝트 상세 본문·기간, 입력칸 테두리 대비 강화,
