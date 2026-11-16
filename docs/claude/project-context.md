@@ -50,6 +50,14 @@ features/<기능>/ 기능별 코드 (layout, home, about, teams, projects, guest
 - DB 쓰기: 반드시 Server Action(`"use server"`)에서 검증 후 `createSupabaseAdminClient()`. 브라우저에서 직접 쓰기 금지.
 - 다국어 컬럼은 `<field>_ko`, `<field>_en`. 사전에 없는 키·컬럼은 렌더링 때 에러(오타를 바로 잡기 위해 의도적).
 - 캐시 즉시 무효화: `POST /api/revalidate` + `Authorization: Bearer $REVALIDATE_SECRET`.
+  - 언제: Supabase 대시보드에서 데이터를 직접 고친 뒤 바로 반영하고 싶을 때. 안 불러도 60초(`CACHE_SECONDS`) 지나면 자동 갱신.
+  - 범위: 모든 DB 조회가 태그 `supabase-data` 하나를 공유해서 한 번 호출로 전부 무효화. 요청 본문 없음, 태그 지정 불가.
+  - 응답: 200 `{ok:true}` / 401 시크릿 틀림 / 503 서버에 REVALIDATE_SECRET 없음 / 500 무효화 실패. GET 등은 405.
+  - 호출 (Git Bash, 시크릿을 명령에 직접 적지 않음. 배포 후엔 주소만 바꾸고 배포 환경의 시크릿 사용):
+    ```bash
+    curl -X POST http://localhost:3000/api/revalidate \
+      -H "Authorization: Bearer $(grep '^REVALIDATE_SECRET=' .env.local | cut -d= -f2- | tr -d '\r\"')"
+    ```
 - 이미지: Supabase Storage 공개 버킷, DB에는 파일명만. 허용 버킷은 `next.config.mjs`의 IMAGE_BUCKETS와 각 URL 함수에 같이 등록.
 - Server Action 출처 허용(allowedOrigins)은 Codespaces에서만 켜지고 로컬/배포에서는 비어 있음.
 
