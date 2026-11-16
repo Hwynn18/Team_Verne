@@ -71,7 +71,7 @@ features/<기능>/ 기능별 코드 (layout, home, about, teams, projects, guest
   `submission_log`(IP는 HMAC 해시, 24시간 보관)
 - 공개 버킷: `project-covers`, `member-photos`, `news-images`, `team-gallery` (jpg/png/webp, 2MB, 쓰기 정책 없음)
 - 주요 CHECK: slug `^[a-z0-9-]+$`, 이미지 파일명 규칙, 글자 수 제한. 코드 검증 상수와 값을 맞춘다.
-- `docs/sql/` (번호 순서대로 SQL Editor에서 실행, 새 환경 만들 때 다시 실행):
+- `docs/sql/` (번호 순서대로 SQL Editor에서 실행, 새 환경 만들 때 다시 실행. 현재 DB는 001~004 적용 확인 2026-11-16: 함수·칸·테이블·인덱스, cron 2개 active·succeeded, anon RPC 실행 401):
   - `001` `guestbook_reserve_delete_attempt` RPC + `guestbook_entries.delete_locked_until` (삭제 시도 원자 예약, 5회 → 15분 잠금)
   - `002` `submission_try_reserve` RPC + 인덱스 (IP 제한 확인·기록 원자화, 부작용 전에 호출)
   - `003` pg_cron: submission_log 24시간 정리(매시), cron.job_run_details 7일 정리
