@@ -125,7 +125,7 @@ Projects(파트 필터·상세), 방명록(허니팟·쿨다운·IP 제한·삭�
 
 다음 순서: **남은 내용 입력 → 배포**
 - 갤러리: 사진 준비되면 `team-gallery` 버킷 업로드 + `gallery_photos` 등록, 샘플 사진 정리.
-- 팀 소개(About > 팀 소개) 사진: `public/about/`에 `about-1.jpg`(16:9), `mission-1.jpg`·`mission-2.jpg`(4:5) 넣기.
+- 팀 소개(About > 팀 소개) 사진: Supabase `team-gallery` 버킷에 `about-1.jpg`(16:9), `mission-1.jpg`·`mission-2.jpg`(4:5) 업로드(DB 등록 없음, 배포 불필요). 같은 이름으로 교체하면 이미지 캐시 때문에 최대 4시간 늦게 바뀜.
   장수·이름 바꾸면 `features/about/IntroPage.js`의 `PHOTOS`만 수정. 없으면 회색 칸으로 보임.
 - 프로젝트: 실제 프로젝트가 생기면 `projects` 등록(표지는 `project-covers` 버킷).
 - 배포 때 확인: x-forwarded-for 신뢰 여부(IP 제한), 환경변수 7개 이관, allowedOrigins 비어 있는지,

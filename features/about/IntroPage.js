@@ -1,12 +1,13 @@
 import { getDictionary } from "@/lib/i18n/server";
 import { siteConfig } from "@/lib/config/site";
+import { getGalleryPhotoUrl } from "@/features/teams/galleryPhotoUrl";
 import { Reveal, ParallaxPhoto } from "./IntroMotion";
 import styles from "./About.module.css";
 
-// 사진은 public/about/ 에 이 이름으로 넣는다. 없으면 회색 자리로 보인다.
+// 사진은 Supabase team-gallery 버킷에 이 이름으로 올린다(DB 등록 없음). 없으면 회색 자리로 보인다.
 const PHOTOS = {
-  about: ["/about/about-1.jpg"],
-  mission: ["/about/mission-1.jpg", "/about/mission-2.jpg"],
+  about: ["about-1.jpg"],
+  mission: ["mission-1.jpg", "mission-2.jpg"],
 };
 
 function getText(labels, key) {
@@ -27,11 +28,11 @@ function Section({ id, labels }) {
   );
 }
 
-function Photos({ srcs }) {
+function Photos({ fileNames }) {
   return (
-    <div className={styles.introPhotos} data-count={srcs.length}>
-      {srcs.map((src) => (
-        <ParallaxPhoto key={src} src={src} sizes={srcs.length > 1 ? "(max-width: 768px) 100vw, 540px" : "(max-width: 768px) 100vw, 1080px"} />
+    <div className={styles.introPhotos} data-count={fileNames.length}>
+      {fileNames.map((fileName) => (
+        <ParallaxPhoto key={fileName} src={getGalleryPhotoUrl(fileName)} sizes={fileNames.length > 1 ? "(max-width: 768px) 100vw, 540px" : "(max-width: 768px) 100vw, 1080px"} />
       ))}
     </div>
   );
@@ -55,10 +56,10 @@ export default async function IntroPage() {
       </hgroup>
 
       <Section id="about" labels={labels} />
-      <Photos srcs={PHOTOS.about} />
+      <Photos fileNames={PHOTOS.about} />
       <Section id="question" labels={labels} />
       <Section id="mission" labels={labels} />
-      <Photos srcs={PHOTOS.mission} />
+      <Photos fileNames={PHOTOS.mission} />
 
       <Reveal as="section" className={`${styles.introSection} ${styles.introManifesto}`}>
         <p className={`eyebrow ${styles.introLabel}`}>{getText(labels, "manifestoTitle")}</p>
