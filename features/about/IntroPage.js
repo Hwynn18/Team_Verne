@@ -50,7 +50,6 @@ export default async function IntroPage() {
         <style>{"[data-reveal]{opacity:1!important;transform:none!important}"}</style>
       </noscript>
       <hgroup className={styles.introHero}>
-        <p className="eyebrow">{t.nav.aboutIntro}</p>
         <h1 className={styles.introSlogan}>{siteConfig.name}</h1>
         <p className={styles.introSloganFull}>{sloganFull}</p>
       </hgroup>

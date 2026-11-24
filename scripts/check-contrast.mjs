@@ -4,6 +4,7 @@ import { readFileSync } from "node:fs";
 
 const THEME_PATH = "styles/theme.css";
 const TEXT = 4.5; // 일반 글자 최소 대비
+const UI = 3; // 입력칸 테두리 같은 UI 경계 최소 대비 (WCAG 1.4.11)
 
 // [글자 토큰, 배경 토큰, 최소 대비, 설명]
 // 새 조합을 CSS에 쓰면 여기에도 추가한다.
@@ -25,6 +26,8 @@ const PAIRS = [
   ["--color-danger", "--color-bg", TEXT, "에러 글자"],
   ["--color-danger", "--color-danger-soft", TEXT, "에러 안내 박스"],
   ["--color-on-danger", "--color-danger", TEXT, "삭제 버튼 글자"],
+  ["--color-border-field", "--color-bg", UI, "입력칸 테두리 (입력칸 안쪽)"],
+  ["--color-border-field", "--color-surface", UI, "입력칸 테두리 (폼 패널)"],
 ];
 
 function readTokens(path) {

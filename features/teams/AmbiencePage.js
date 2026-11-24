@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getDictionary } from "@/lib/i18n/server";
 import { pickLocalized } from "@/lib/i18n/localize";
 import { getGalleryPhotos } from "./teamsQueries";
@@ -11,14 +12,17 @@ function Body({ result, locale, labels }) {
 
   return (
     <ul className={styles.galleryGrid}>
-      {result.data.map((photo) => {
+      {result.data.map((photo, index) => {
         const url = getGalleryPhotoUrl(photo.photo_path);
         if (!url) return null;
         const caption = pickLocalized(photo, "caption", locale);
         return (
           <li key={photo.id} className={styles.galleryItem}>
-            {/* 장식적인 갤러리 사진이라 next/image 대신 일반 img를 쓴다. 캡션이 대체 텍스트를 대신한다. */}
-            <img src={url} alt={caption} loading="lazy" className={styles.galleryImage} />
+            {/* 원본이 수 MB라 next/image로 화면 크기에 맞춰 줄여 받는다. 첫 사진은 첫 화면(LCP)이라 바로 받는다.
+                아래 캡션 문단이 설명이라 alt는 비워서 두 번 읽히지 않게 한다. */}
+            <div className={styles.galleryFrame}>
+              <Image src={url} alt="" fill sizes="(max-width: 768px) 100vw, 340px" loading={index === 0 ? "eager" : "lazy"} className={styles.galleryImage} />
+            </div>
             {caption && <p className={styles.galleryCaption}>{caption}</p>}
           </li>
         );
@@ -32,10 +36,7 @@ export default async function AmbiencePage() {
 
   return (
     <main className={styles.page}>
-      <hgroup>
-        <p className="eyebrow">{t.nav.teams}</p>
-        <h1 className={styles.title}>{t.nav.teamsAmbience}</h1>
-      </hgroup>
+      <h1 className={styles.title}>{t.nav.teamsAmbience}</h1>
       <Body result={result} locale={locale} labels={t.teams.ambience} />
     </main>
   );

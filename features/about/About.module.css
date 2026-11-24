@@ -174,7 +174,9 @@
 
 .externalLink {
   align-self: flex-start;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   padding: 12px 20px;
   border-radius: var(--radius-sm);
   background: var(--color-primary);
@@ -244,6 +246,11 @@
 }
 
 .back:hover { text-decoration: underline; }
+
+/* 터치 기기: 손가락으로 누르는 대상은 최소 44px (DESIGN.md) */
+@media (pointer: coarse) {
+  .back { display: inline-flex; align-items: center; min-height: 44px; }
+}
 
 .detailTitle {
   margin: 0;

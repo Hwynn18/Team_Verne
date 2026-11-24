@@ -28,12 +28,14 @@
 .textarea {
   width: 100%;
   padding: 10px 14px;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-border-field);
   border-radius: var(--radius-sm);
   font: inherit;
   color: inherit;
   background: var(--color-bg);
 }
+
+.input { min-height: 44px; }
 
 .textarea {
   min-height: 110px;
@@ -59,6 +61,7 @@
 
 .button {
   align-self: flex-start;
+  min-height: 44px;
   padding: 12px 24px;
   border: 0;
   border-radius: var(--radius-sm);
@@ -97,17 +100,18 @@
   color: var(--color-primary-strong);
 }
 
+/* 폼 카드 안에 또 상자를 두지 않고 윗선 하나로 구역만 나눈다 */
 .privacy {
   margin: 0;
-  padding: 16px 18px;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  padding: 12px 0 0;
+  border: 0;
+  border-top: 1px solid var(--color-border);
   font-size: var(--text-sm);
   color: var(--color-text-muted);
 }
 
 .privacyTitle {
-  padding: 0 6px;
+  padding: 0 8px 0 0;
   font-weight: 700;
 }
 
@@ -137,6 +141,11 @@
   width: 1px;
   height: 1px;
   overflow: hidden;
+}
+
+/* 터치 기기: 동의 체크 줄(라벨 전체가 누르는 곳)을 최소 44px로 (DESIGN.md) */
+@media (pointer: coarse) {
+  .privacyAgree { min-height: 44px; }
 }
 
 @media (max-width: 768px) {

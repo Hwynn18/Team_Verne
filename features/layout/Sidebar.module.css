@@ -32,6 +32,7 @@
 }
 
 .langButton {
+  min-height: 28px;
   padding: 4px 10px;
   border: 0;
   border-radius: var(--radius-sm);
@@ -230,6 +231,14 @@
 
   .navItem[data-open="true"] > .flyout { display: block; }
   .navItem[data-open="true"] > .hasFlyout::after { transform: rotate(90deg); }
+}
+
+/* 터치 기기: 손가락으로 누르는 대상은 최소 44px (DESIGN.md) */
+@media (pointer: coarse) {
+  .logo { min-height: 44px; align-items: center; }
+  .langButton { min-width: 44px; min-height: 44px; }
+  .flyoutLink { min-height: 44px; display: flex; align-items: center; }
+  .social { min-height: 44px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

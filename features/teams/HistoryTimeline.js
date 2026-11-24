@@ -20,7 +20,7 @@ function TimelineItem({ event, locale }) {
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
         <span className={styles.timelineDate}>{formatEventDate(event.event_date)}</span>
-        <h3 className={styles.timelineTitle}>{title}</h3>
+        <h2 className={styles.timelineTitle}>{title}</h2>
         {description && <p className={styles.timelineDescription}>{description}</p>}
       </motion.div>
     </li>

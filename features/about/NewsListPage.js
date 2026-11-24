@@ -48,10 +48,7 @@ export default async function NewsListPage({ searchParams }) {
 
   return (
     <main className={`${styles.page} ${styles.pageNarrow}`}>
-      <hgroup>
-        <p className="eyebrow">{t.nav.about}</p>
-        <h1 className={styles.title}>{t.nav.aboutNews}</h1>
-      </hgroup>
+      <h1 className={styles.title}>{t.nav.aboutNews}</h1>
       {body}
     </main>
   );

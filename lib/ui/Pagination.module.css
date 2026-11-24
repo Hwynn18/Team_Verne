@@ -22,6 +22,12 @@
   color: var(--color-text-disabled);
 }
 
+/* 터치 기기: 손가락으로 누르는 대상은 최소 44px (DESIGN.md) */
+@media (pointer: coarse) {
+  .pageLink,
+  .pageLinkDisabled { display: inline-flex; align-items: center; min-height: 44px; }
+}
+
 .pageStatus {
   font-size: var(--text-sm);
   color: var(--color-text-muted);

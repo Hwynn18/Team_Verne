@@ -12,6 +12,7 @@ colors:
   bench-gray: "#12141b"
   lamp-gray: "#1a1d27"
   seam-gray: "#232735"
+  field-gray: "#646b80"
   paper-white: "#f3f5fa"
   pencil-gray: "#9aa1b2"
   faded-gray: "#5d6375"
@@ -139,7 +140,8 @@ components:
 - **작업실 검정 (Workshop Black)**: 페이지 바탕, 사이드바, 입력칸 안쪽.
 - **작업대 회색 (Bench Gray)**: 카드, 폼, 배너, 하위 메뉴 패널.
 - **스탠드 회색 (Lamp Gray)**: hover된 카드, 하위 메뉴 항목 hover, 기본 뱃지.
-- **이음새 회색 (Seam Gray)**: 모든 1px 테두리와 구분선.
+- **이음새 회색 (Seam Gray)**: 입력칸을 뺀 모든 1px 테두리와 구분선.
+- **입력칸 회색 (Field Gray)**: 입력칸 테두리만. 칸 위치가 보여야 해서 배경 대비 3:1 이상.
 - **종이 흰색 (Paper White)**: 본문 글자.
 - **연필 회색 (Pencil Gray)**: 날짜, 힌트, 요약, 슬로건 같은 보조 글자.
 - **바랜 회색 (Faded Gray)**: 비활성 글자. 대비 기준 예외라 읽어야 하는 글자에는 쓰지 않아.
@@ -164,7 +166,7 @@ components:
 - **Subtitle** (600, 20px): 카드 제목, 멤버 이름, 히어로 아래 슬로건(연필 회색).
 - **Body** (400, 16px, 행간 1.7–1.8): 본문과 요약. 요약은 최대 60ch.
 - **Meta** (400, 14px): 날짜(숫자 고정폭), 힌트, 칩 글자.
-- **Label** (600, 12px, 자간 0.12em, 대문자): 제목 위 eyebrow. 신호 파랑.
+- **Label** (600, 12px, 자간 0.12em, 대문자): 제목 위 eyebrow. 신호 파랑. 팀 소개 챕터 이름(About/Question/Mission/Manifesto)과 홈 '지금 진행 중' 제목에만 써. 페이지 머리(h1 위 상위 메뉴 이름)에는 안 써: 사이드바 활성 메뉴가 이미 알려줘서 중복이야.
 
 ### Named Rules
 **The Keep-All Rule.** 한글 제목(h1–h3)은 `word-break: keep-all`로 어절 단위 줄바꿈. 글자 중간에서 끊지 않는다.
@@ -216,7 +218,7 @@ components:
 - **Internal Padding:** 24px. 카드 전체가 링크(제목 링크의 `::after`가 카드를 덮음).
 
 ### Inputs / Fields
-- **Style:** 작업실 검정 안쪽, 1px 이음새 회색 테두리, 4px 모서리, 여백 10px 14px. 라벨은 14px 700, 힌트는 14px 연필 회색.
+- **Style:** 작업실 검정 안쪽, 1px 입력칸 회색 테두리, 4px 모서리, 여백 10px 14px. 라벨은 14px 700, 힌트는 14px 연필 회색.
 - **Focus:** 2px 신호 파랑 외곽선 (간격 1px).
 - **Error:** 옅은 경고 빨강 면 + 경고 빨강 글자 안내 상자. 성공 안내는 밤 파랑 면 + 신호 파랑 글자.
 - **Form container:** 작업대 회색 패널, 8px 모서리, 안쪽 28px (모바일 20px).
@@ -227,6 +229,8 @@ components:
 - **Flyout:** 상위 메뉴(About, Teams)는 이동 없이 오른쪽에 하위 메뉴 패널을 연다. 작업대 회색, 오른쪽 모서리만 8px, 0.15초 동안 4px 옆에서 미끄러지며 나타나.
 - **Mobile:** 0.2초 슬라이드 패널 + 반투명 검정 막, 하위 메뉴는 아코디언(› 화살표가 90° 회전).
 - **Language toggle:** 테두리 상자 안 두 칸, 선택된 칸은 로고 파랑 면.
+- **Skip link:** 키보드 첫 Tab에서만 왼쪽 위에 나타나는 "본문으로 바로가기". 로고 파랑 면 + 흰 글자 700, 4px 모서리. 평소엔 화면 밖.
+- **Touch:** 터치 기기(`pointer: coarse`)에서는 메뉴·칩·토글·뒤로 링크·동의 체크 줄을 최소 44px로 키운다. 마우스 화면 크기는 그대로.
 
 ### Active Project Banner (signature)
 홈의 진행 중 프로젝트 배너. 작업대 회색 면에 위쪽만 2px 로고 파랑 선, 오른쪽 위 모서리에서 파란 빛이 번져. 안쪽 여백 48px 40px(모바일 32px 24px), 표지가 있으면 글/표지 2열(표지 최대 420px).

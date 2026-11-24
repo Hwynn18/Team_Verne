@@ -227,6 +227,12 @@
   overflow-wrap: anywhere;
 }
 
+/* 터치 기기: 손가락으로 누르는 대상은 최소 44px (DESIGN.md) */
+@media (pointer: coarse) {
+  .chip { display: inline-flex; align-items: center; min-height: 44px; }
+  .back { display: inline-flex; align-items: center; min-height: 44px; }
+}
+
 @media (max-width: 768px) {
   .page {
     padding: 24px 20px 56px;

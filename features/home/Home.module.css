@@ -81,7 +81,9 @@
 }
 
 .bannerAction {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   padding: 12px 20px;
   border-radius: var(--radius-sm);
   background: var(--color-primary);
@@ -161,6 +163,7 @@
 }
 
 .updateItem {
+  position: relative;
   display: flex;
   gap: 20px;
   padding: 16px 0;
@@ -175,6 +178,13 @@
 }
 
 .updateTitle { overflow-wrap: anywhere; }
+
+/* 날짜까지 줄 전체를 누를 수 있게 (카드 링크와 같은 방식) */
+.updateLink::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
 
 .updateLink:hover,
 .updateLink:focus-visible {

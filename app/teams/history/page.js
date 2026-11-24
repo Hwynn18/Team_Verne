@@ -12,10 +12,7 @@ export default async function Page() {
 
   return (
     <main className={styles.page}>
-      <hgroup>
-        <p className="eyebrow">{t.nav.teams}</p>
-        <h1 className={styles.title}>{t.nav.teamsHistory}</h1>
-      </hgroup>
+      <h1 className={styles.title}>{t.nav.teamsHistory}</h1>
       {result.failed ? (
         <TeamsMessage tone="error">{labels.loadError}</TeamsMessage>
       ) : result.data.length === 0 ? (

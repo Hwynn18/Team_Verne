@@ -42,12 +42,12 @@
   background: var(--color-surface);
 }
 
-.galleryImage {
-  display: block;
-  width: 100%;
+.galleryFrame {
+  position: relative;
   height: 220px;
-  object-fit: cover;
 }
+
+.galleryImage { object-fit: cover; }
 
 .galleryCaption {
   margin: 0;
@@ -100,6 +100,8 @@
 .timelineTitle {
   margin: 0;
   font-size: var(--text-lg);
+  /* h2 기본 자간(-0.02em)을 빼서 예전 h3와 같은 모양 유지 */
+  letter-spacing: normal;
   overflow-wrap: anywhere;
 }
 
