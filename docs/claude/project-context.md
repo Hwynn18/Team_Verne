@@ -35,6 +35,10 @@
   - `--color-primary-soft #0f1f5c`: hover·활성 메뉴 배경
   - 보조 글자 `--color-text-muted`, 에러 `--color-danger`
 - 새 글자/배경 조합을 만들면 `scripts/check-contrast.mjs`의 PAIRS에 추가하고 `npm run check:contrast` 통과 확인.
+  입력칸 테두리는 `--color-border-field`(UI 경계 3:1 기준, PAIRS의 `UI`). 카드·구분선은 그대로 `--color-border`.
+- 터치 대상 최소 44px: 크게 키워야 하면 `@media (pointer: coarse)` 안에서만(마우스 화면 크기 유지), 1~3px 차이는 기본값으로.
+- 제목 위 작은 라벨 `.eyebrow`는 팀 소개 챕터 이름과 홈 "지금 진행 중"에만. 페이지 머리(h1 위)엔 안 씀(사이드바와 중복, 2026-11-24 삭제).
+- 디자인 시스템 문서: `DESIGN.md`(+ `.impeccable/design.json`), 제품 맥락 `PRODUCT.md`. impeccable 감사 보고서는 `.impeccable/audit/`(git 제외).
 - 로고: `public/logo.svg`(파랑, 사이드바에 사용), `public/logo-black.svg`. 원본 비율 960×300.
   파비콘: `app/icon.svg`(파란 사각형 + 흰 로고). 로고 교체는 `lib/config/site.js`만 수정.
 - 폰트: Pretendard 가변 폰트, 동적 서브셋(`lib/config/fonts.js` 한 파일에서 교체).
@@ -97,7 +101,8 @@ done
 git add .
 git diff --cached --name-only | grep -E '(^|/)(\.env\.local|node_modules)' || echo "OK: 민감 파일 없음"
 ```
-lint 경고 `@next/next/no-img-element`(소식 본문·갤러리 이미지)는 알고 있는 사항, 나중에 정리.
+lint 경고 `@next/next/no-img-element`(소식 본문 이미지 1개)는 알고 있는 사항. 갤러리는 2026-11-24 next/image로 바꿔서 없어짐.
+build는 dev 서버를 켠 채로도 성공하지만, 2026-11-24엔 build 도중 dev 서버가 꺼졌음 → 끝나면 `npm run dev` 다시.
 
 ## 8. 진행 상황
 
@@ -126,6 +131,17 @@ Projects(파트 필터·상세), 방명록(허니팟·쿨다운·IP 제한·삭�
 - npm audit (2026-11-16): next 16.3.5→16.4.6, sharp·zod·source-map-js 패치. 남은 moderate 7건은 typescript-eslint 안 minimatch(개발 도구, 상위 수정판 없음).
 - 보류: 전체 CSP(nonce + proxy.js 필요).
 
+디자인 감사 (2026-11-24, impeccable audit 3회: 16 → 17 → 19/20. 커밋 35ac524, push 완료):
+- 접근성: KO/EN 토글 22px→28px(터치 44px), 입력칸 테두리 대비 1.3→3.7, 본문 바로가기 링크(`sidebar.skipToContent`),
+  팀 역사 제목 h3→h2, 갤러리 alt 비움(캡션과 중복).
+- 터치 44px: 사이드바 메뉴·로고·인스타, 필터 칩, 뒤로 링크, 페이지 이동, 동의 체크 줄, 기본 버튼·입력칸. 홈 최신 소식은 줄 전체 클릭.
+- 성능: 팀 분위기 갤러리를 next/image로(원본 3000px → 828px 30KB, 모바일 Fast 4G LCP 2.68→0.92초).
+- 정리: 페이지 머리 eyebrow 7곳 삭제, 폼 안 개인정보 이중 테두리 제거.
+- 의도적으로 남긴 것(검사기가 지적하지만 유지): 팀 소개 챕터 eyebrow, 홈 배너 2px 파란 윗선.
+- 남은 P3: 소식 본문 이미지 크기 미지정(지금 본문 이미지 0장이라 보류).
+- 확인 못 한 것: 실제 폰·Safari, 스크린리더 직접 사용.
+- 눈에 띈 것(코드 아님): 대표 프로젝트 표지 first_project_cover.png가 흰 배경 캡처라 어두운 화면에서 튐. 교체는 사용자 판단.
+
 다음 순서: **남은 내용 입력 → 배포**
 - 갤러리: 사진 추가는 `team-gallery` 버킷 업로드 + `gallery_photos` 등록. 샘플 3개(행·파일) 2026-11-16 삭제, 실제 사진 1장 있음.
 - 팀 소개(About > 팀 소개) 사진: Supabase `team-gallery` 버킷에 `about-1.jpg`(16:9), `mission-1.jpg`·`mission-2.jpg`(4:5) 업로드(DB 등록 없음, 배포 불필요). 같은 이름으로 교체하면 이미지 캐시 때문에 최대 4시간 늦게 바뀜.
@@ -138,5 +154,6 @@ Projects(파트 필터·상세), 방명록(허니팟·쿨다운·IP 제한·삭�
   배포 후 `/api/revalidate` 200 확인(로컬 프로덕션에서 원인 불명 500 한 번, 재빌드 후 재현 안 됨).
 - Supabase 무료 플랜은 오래 안 쓰면 정지됨. 정지 중엔 `*.supabase.co`가 DNS에서 안 풀려 `fetch failed`가 남 → 대시보드에서 Resume.
 
-미뤄둔 제안(사용자가 아직 고르지 않음): 한/영 404 페이지, 프로젝트 상세 본문·기간, 입력칸 테두리 대비 강화,
-흰 로고 파일, 문의자 자동 확인 메일(도메인 필요), 문의 처리 상태 컬럼, img lint 경고 정리, 멤버 페이지네이션.
+미뤄둔 제안(사용자가 아직 고르지 않음): 한/영 404 페이지, 프로젝트 상세 본문·기간,
+흰 로고 파일, 문의자 자동 확인 메일(도메인 필요), 문의 처리 상태 컬럼, 소식 본문 img lint 경고 정리, 멤버 페이지네이션.
+(입력칸 테두리 대비 강화는 2026-11-24 반영됨)
