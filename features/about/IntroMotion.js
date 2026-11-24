@@ -7,9 +7,9 @@ import { useImageFailed } from "@/lib/hooks/useImageFailed";
 import { useScrollReveal } from "@/features/teams/useScrollReveal";
 import styles from "./About.module.css";
 
-// 화면에 들어오면 아래에서 살짝 떠오른다. 모션 줄이기 설정이면 처음부터 보인 상태.
+// 화면에 들어올 때마다 아래에서 살짝 떠오른다(벗어나면 다시 숨음). 모션 줄이기 설정이면 처음부터 보인 상태.
 export function Reveal({ as = "div", className, children }) {
-  const { ref, visible, reduceMotion } = useScrollReveal();
+  const { ref, visible, reduceMotion } = useScrollReveal({ once: false });
   const Tag = motion[as];
   return (
     <Tag
@@ -17,7 +17,7 @@ export function Reveal({ as = "div", className, children }) {
       data-reveal=""
       className={className}
       initial={reduceMotion ? false : { opacity: 0, y: 32 }}
-      animate={visible ? { opacity: 1, y: 0 } : {}}
+      animate={visible ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
       transition={{ duration: 0.7, ease: "easeOut" }}
     >
       {children}
