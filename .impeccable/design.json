@@ -1,0 +1,421 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-24T11:36:01.728913+00:00",
+  "title": "Design System: Team WV",
+  "extensions": {
+    "colorMeta": {
+      "logo-blue": {
+        "role": "primary",
+        "displayName": "로고 파랑 (Logo Blue)",
+        "tonalRamp": [
+          "#0a1440",
+          "#0f1f5c",
+          "#0226c4",
+          "#0233fb",
+          "#2a52ff",
+          "#5577ff",
+          "#7c96ff",
+          "#c9d3ff"
+        ]
+      },
+      "logo-blue-hover": {
+        "role": "primary",
+        "displayName": "밝힌 로고 파랑 (Logo Blue Hover)",
+        "tonalRamp": [
+          "#0a1440",
+          "#0f1f5c",
+          "#0226c4",
+          "#0233fb",
+          "#2a52ff",
+          "#5577ff",
+          "#7c96ff",
+          "#c9d3ff"
+        ]
+      },
+      "signal-blue": {
+        "role": "primary",
+        "displayName": "신호 파랑 (Signal Blue)",
+        "tonalRamp": [
+          "#0a1440",
+          "#0f1f5c",
+          "#0226c4",
+          "#0233fb",
+          "#2a52ff",
+          "#5577ff",
+          "#7c96ff",
+          "#c9d3ff"
+        ]
+      },
+      "night-blue": {
+        "role": "primary",
+        "displayName": "밤 파랑 (Night Blue)",
+        "tonalRamp": [
+          "#0a1440",
+          "#0f1f5c",
+          "#0226c4",
+          "#0233fb",
+          "#2a52ff",
+          "#5577ff",
+          "#7c96ff",
+          "#c9d3ff"
+        ]
+      },
+      "blue-glow": {
+        "role": "primary",
+        "displayName": "파란 빛 (Blue Glow)",
+        "tonalRamp": [
+          "#0a1440",
+          "#0f1f5c",
+          "#0226c4",
+          "#0233fb",
+          "#2a52ff",
+          "#5577ff",
+          "#7c96ff",
+          "#c9d3ff"
+        ]
+      },
+      "on-blue": {
+        "role": "neutral",
+        "displayName": "파랑 위 흰색 (On Blue)",
+        "tonalRamp": [
+          "#0a0b10",
+          "#12141b",
+          "#1a1d27",
+          "#232735",
+          "#5d6375",
+          "#9aa1b2",
+          "#d0d4de",
+          "#f3f5fa"
+        ]
+      },
+      "workshop-black": {
+        "role": "neutral",
+        "displayName": "작업실 검정 (Workshop Black)",
+        "tonalRamp": [
+          "#0a0b10",
+          "#12141b",
+          "#1a1d27",
+          "#232735",
+          "#5d6375",
+          "#9aa1b2",
+          "#d0d4de",
+          "#f3f5fa"
+        ]
+      },
+      "bench-gray": {
+        "role": "neutral",
+        "displayName": "작업대 회색 (Bench Gray)",
+        "tonalRamp": [
+          "#0a0b10",
+          "#12141b",
+          "#1a1d27",
+          "#232735",
+          "#5d6375",
+          "#9aa1b2",
+          "#d0d4de",
+          "#f3f5fa"
+        ]
+      },
+      "lamp-gray": {
+        "role": "neutral",
+        "displayName": "스탠드 회색 (Lamp Gray)",
+        "tonalRamp": [
+          "#0a0b10",
+          "#12141b",
+          "#1a1d27",
+          "#232735",
+          "#5d6375",
+          "#9aa1b2",
+          "#d0d4de",
+          "#f3f5fa"
+        ]
+      },
+      "seam-gray": {
+        "role": "neutral",
+        "displayName": "이음새 회색 (Seam Gray)",
+        "tonalRamp": [
+          "#0a0b10",
+          "#12141b",
+          "#1a1d27",
+          "#232735",
+          "#5d6375",
+          "#9aa1b2",
+          "#d0d4de",
+          "#f3f5fa"
+        ]
+      },
+      "paper-white": {
+        "role": "neutral",
+        "displayName": "종이 흰색 (Paper White)",
+        "tonalRamp": [
+          "#0a0b10",
+          "#12141b",
+          "#1a1d27",
+          "#232735",
+          "#5d6375",
+          "#9aa1b2",
+          "#d0d4de",
+          "#f3f5fa"
+        ]
+      },
+      "pencil-gray": {
+        "role": "neutral",
+        "displayName": "연필 회색 (Pencil Gray)",
+        "tonalRamp": [
+          "#0a0b10",
+          "#12141b",
+          "#1a1d27",
+          "#232735",
+          "#5d6375",
+          "#9aa1b2",
+          "#d0d4de",
+          "#f3f5fa"
+        ]
+      },
+      "faded-gray": {
+        "role": "neutral",
+        "displayName": "바랜 회색 (Faded Gray)",
+        "tonalRamp": [
+          "#0a0b10",
+          "#12141b",
+          "#1a1d27",
+          "#232735",
+          "#5d6375",
+          "#9aa1b2",
+          "#d0d4de",
+          "#f3f5fa"
+        ]
+      },
+      "warning-red": {
+        "role": "error",
+        "displayName": "경고 빨강 (Warning Red)",
+        "tonalRamp": [
+          "#2a1212",
+          "#4d1a1a",
+          "#7f1d1d",
+          "#b91c1c",
+          "#dc2626",
+          "#f87171",
+          "#fca5a5",
+          "#fee2e2"
+        ]
+      },
+      "warning-red-soft": {
+        "role": "error",
+        "displayName": "옅은 경고 빨강 (Warning Red Soft)",
+        "tonalRamp": [
+          "#2a1212",
+          "#4d1a1a",
+          "#7f1d1d",
+          "#b91c1c",
+          "#dc2626",
+          "#f87171",
+          "#fca5a5",
+          "#fee2e2"
+        ]
+      },
+      "backdrop": {
+        "role": "neutral",
+        "displayName": "메뉴 뒤 막 (Backdrop)",
+        "tonalRamp": [
+          "#0a0b10",
+          "#12141b",
+          "#1a1d27",
+          "#232735",
+          "#5d6375",
+          "#9aa1b2",
+          "#d0d4de",
+          "#f3f5fa"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "홈 히어로 팀 이름. 팀 소개 슬로건은 최대 160px."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "페이지 제목, 배너 프로젝트 이름, 상세 제목."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "섹션 제목."
+      },
+      "subtitle": {
+        "displayName": "Subtitle",
+        "purpose": "카드 제목, 멤버 이름, 히어로 슬로건."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "본문과 요약(최대 60ch)."
+      },
+      "meta": {
+        "displayName": "Meta",
+        "purpose": "날짜(숫자 고정폭), 힌트, 칩 글자."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "제목 위 eyebrow. 대문자, 신호 파랑."
+      }
+    },
+    "shadows": [
+      {
+        "name": "active-marker",
+        "value": "inset 3px 0 0 #7c96ff",
+        "purpose": "활성 메뉴 왼쪽 표시선. 깊이용 그림자는 없다."
+      }
+    ],
+    "motion": [
+      {
+        "name": "state-fast",
+        "value": "0.15s",
+        "purpose": "버튼·칩·카드·하위 메뉴 상태 전환."
+      },
+      {
+        "name": "panel",
+        "value": "0.2s",
+        "purpose": "모바일 사이드바 슬라이드와 뒤 막."
+      },
+      {
+        "name": "reveal-intro",
+        "value": "0.7s easeOut, y 32px → 0",
+        "purpose": "팀 소개 섹션 등장. 다시 들어올 때마다 반복."
+      },
+      {
+        "name": "reveal-history",
+        "value": "0.5s easeOut",
+        "purpose": "팀 역사 항목 등장. 한 번만."
+      },
+      {
+        "name": "parallax-photo",
+        "value": "y -8% → 8% (scroll)",
+        "purpose": "팀 소개 사진이 액자 안에서 움직임."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "mobile",
+        "value": "768px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "폼 제출 같은 주 행동.",
+      "html": "<button class=\"ds-btn-primary\">응원 남기기</button>",
+      "css": ".ds-btn-primary { font-family: \"Pretendard Variable\", \"Apple SD Gothic Neo\", \"Malgun Gothic\", system-ui, sans-serif; padding: 12px 24px; border: 0; border-radius: 4px; background: var(--color-primary, #0233fb); color: var(--color-on-primary, #fff); font-weight: 700; cursor: pointer; transition: background-color 0.15s; } .ds-btn-primary:hover { background: var(--color-primary-hover, #2a52ff); } .ds-btn-primary:focus-visible { outline: 2px solid var(--color-primary-strong, #7c96ff); outline-offset: 2px; } .ds-btn-primary:disabled { opacity: 0.6; cursor: progress; }"
+    },
+    {
+      "name": "Text Link",
+      "kind": "custom",
+      "refersTo": "signal-blue",
+      "description": "배너와 같이 보이는 보조 링크.",
+      "html": "<a class=\"ds-link\" href=\"#\">팀 소개 보기 →</a>",
+      "css": ".ds-link { font-family: \"Pretendard Variable\", \"Apple SD Gothic Neo\", \"Malgun Gothic\", system-ui, sans-serif; display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; color: var(--color-primary-strong, #7c96ff); text-decoration: none; } .ds-link:hover { text-decoration: underline; } .ds-link:focus-visible { outline: 2px solid var(--color-primary-strong, #7c96ff); outline-offset: 2px; }"
+    },
+    {
+      "name": "Filter Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "프로젝트 파트 필터. 선택되면 로고 파랑 면.",
+      "html": "<div class=\"ds-chips\"><a class=\"ds-chip ds-chip-active\" href=\"#\">전체</a><a class=\"ds-chip\" href=\"#\">디자인</a><a class=\"ds-chip\" href=\"#\">개발</a></div>",
+      "css": ".ds-chips { display: flex; gap: 8px; font-family: \"Pretendard Variable\", \"Apple SD Gothic Neo\", \"Malgun Gothic\", system-ui, sans-serif; } .ds-chip { padding: 6px 14px; border: 1px solid var(--color-border, #232735); border-radius: 4px; font-size: 14px; font-weight: 600; color: var(--color-text, #f3f5fa); text-decoration: none; transition: background-color 0.15s, border-color 0.15s; } .ds-chip:hover { background: var(--color-surface-2, #1a1d27); border-color: var(--color-primary-strong, #7c96ff); } .ds-chip:focus-visible { outline: 2px solid var(--color-primary-strong, #7c96ff); outline-offset: 2px; } .ds-chip-active, .ds-chip-active:hover { background: var(--color-primary, #0233fb); border-color: var(--color-primary-strong, #7c96ff); color: var(--color-on-primary, #fff); }"
+    },
+    {
+      "name": "Badge",
+      "kind": "chip",
+      "refersTo": "badge",
+      "description": "소식 카테고리. 출시만 로고 파랑.",
+      "html": "<span class=\"ds-badge\">팀</span> <span class=\"ds-badge ds-badge-release\">출시</span>",
+      "css": ".ds-badge { font-family: \"Pretendard Variable\", \"Apple SD Gothic Neo\", \"Malgun Gothic\", system-ui, sans-serif; display: inline-block; padding: 3px 10px; border-radius: 999px; background: var(--color-surface-2, #1a1d27); color: var(--color-text, #f3f5fa); font-size: 12px; font-weight: 700; } .ds-badge-release { background: var(--color-primary, #0233fb); color: var(--color-on-primary, #fff); }"
+    },
+    {
+      "name": "Project Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "프로젝트 카드. 카드 전체가 링크.",
+      "html": "<a class=\"ds-card\" href=\"#\"><span class=\"ds-card-cover\"></span><span class=\"ds-card-body\"><strong class=\"ds-card-title\">TeamWV 웹페이지</strong><span class=\"ds-card-summary\">팀 소개와 프로젝트를 담은 공식 사이트.</span></span></a>",
+      "css": ".ds-card { font-family: \"Pretendard Variable\", \"Apple SD Gothic Neo\", \"Malgun Gothic\", system-ui, sans-serif; display: flex; flex-direction: column; width: 280px; border: 1px solid var(--color-border, #232735); border-radius: 8px; background: var(--color-surface, #12141b); color: var(--color-text, #f3f5fa); text-decoration: none; transition: border-color 0.15s, background-color 0.15s; } .ds-card:hover, .ds-card:focus-visible { border-color: var(--color-primary-strong, #7c96ff); background: var(--color-surface-2, #1a1d27); outline: none; } .ds-card-cover { display: block; aspect-ratio: 16 / 9; border-radius: 7px 7px 0 0; background: var(--color-surface-2, #1a1d27); } .ds-card-body { display: block; padding: 24px; } .ds-card-title { display: block; margin: 0 0 8px; font-size: 20px; font-weight: 600; } .ds-card-summary { color: var(--color-text-muted, #9aa1b2); line-height: 1.6; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "방명록·문의 폼 입력칸.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-label\">닉네임</span><input class=\"ds-input\" placeholder=\"이름을 적어줘\"><span class=\"ds-hint\">최대 20자</span></label>",
+      "css": ".ds-field { font-family: \"Pretendard Variable\", \"Apple SD Gothic Neo\", \"Malgun Gothic\", system-ui, sans-serif; display: flex; flex-direction: column; gap: 6px; width: 280px; color: var(--color-text, #f3f5fa); } .ds-label { font-size: 14px; font-weight: 700; } .ds-input { padding: 10px 14px; border: 1px solid var(--color-border, #232735); border-radius: 4px; font: inherit; color: inherit; background: var(--color-bg, #0a0b10); } .ds-input:focus { outline: 2px solid var(--color-primary-strong, #7c96ff); outline-offset: 1px; } .ds-hint { font-size: 14px; color: var(--color-text-muted, #9aa1b2); }"
+    },
+    {
+      "name": "Sidebar Nav",
+      "kind": "nav",
+      "refersTo": "nav-item-active",
+      "description": "좌측 사이드바 메뉴. 활성은 밤 파랑 면 + 왼쪽 표시선.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-item ds-nav-active\" href=\"#\">Home</a><a class=\"ds-nav-item ds-has-flyout\" href=\"#\">About</a><a class=\"ds-nav-item\" href=\"#\">Projects</a></nav>",
+      "css": ".ds-nav { font-family: \"Pretendard Variable\", \"Apple SD Gothic Neo\", \"Malgun Gothic\", system-ui, sans-serif; display: flex; flex-direction: column; width: 240px; padding: 8px 0; background: var(--color-bg, #0a0b10); border-right: 1px solid var(--color-border, #232735); } .ds-nav-item { display: flex; justify-content: space-between; padding: 14px 24px; font-weight: 700; color: var(--color-text, #f3f5fa); text-decoration: none; } .ds-nav-item:hover { background: var(--color-surface, #12141b); } .ds-nav-item:focus-visible { outline: 2px solid var(--color-primary-strong, #7c96ff); outline-offset: -2px; } .ds-has-flyout::after { content: '\\203A'; color: var(--color-primary-strong, #7c96ff); } .ds-nav-active, .ds-nav-active:hover { color: var(--color-primary-strong, #7c96ff); background: var(--color-primary-soft, #0f1f5c); box-shadow: inset 3px 0 0 var(--color-primary-strong, #7c96ff); }"
+    },
+    {
+      "name": "Active Project Banner",
+      "kind": "custom",
+      "refersTo": "card",
+      "description": "홈 진행 중 프로젝트 배너. 윗선과 모서리 빛만 파랑.",
+      "html": "<section class=\"ds-banner\"><p class=\"ds-eyebrow\">진행 중</p><h2 class=\"ds-banner-title\">TeamWV 웹페이지</h2><a class=\"ds-banner-action\" href=\"#\">자세히 보기</a></section>",
+      "css": ".ds-banner { font-family: \"Pretendard Variable\", \"Apple SD Gothic Neo\", \"Malgun Gothic\", system-ui, sans-serif; padding: 48px 40px; border: 1px solid var(--color-border, #232735); border-top: 2px solid var(--color-primary, #0233fb); border-radius: 8px; color: var(--color-text, #f3f5fa); background: radial-gradient(ellipse at 100% 0%, var(--color-primary-glow, rgb(2 51 251 / 0.18)), transparent 60%), var(--color-surface, #12141b); } .ds-eyebrow { margin: 0 0 16px; font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-primary-strong, #7c96ff); } .ds-banner-title { margin: 0 0 28px; font-size: clamp(32px, 4.5vw, 44px); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; word-break: keep-all; } .ds-banner-action { display: inline-block; padding: 12px 20px; border-radius: 4px; background: var(--color-primary, #0233fb); color: var(--color-on-primary, #fff); font-weight: 700; text-decoration: none; transition: background-color 0.15s; } .ds-banner-action:hover { background: var(--color-primary-hover, #2a52ff); } .ds-banner-action:focus-visible { outline: 2px solid var(--color-primary-strong, #7c96ff); outline-offset: 2px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "밤의 작업실 (The Night Workshop)",
+    "overview": "친구들이 밤에 모여 뭔가를 만드는 작업실이야. 불을 다 켜지 않은 어두운 방에서 작업대(카드·패널)가 한 단계 밝게 떠 있고, 그 위에 놓인 결과물(프로젝트 표지, 사진, 큰 제목)이 눈에 들어와. 로고 파랑은 작업실의 스탠드 불빛처럼 꼭 봐야 하는 곳(버튼, 활성 메뉴, 배너 윗선)에만 켜.\n\n분위기는 **친근하고 가볍게**. 그림자, 두꺼운 테두리, 장식용 그래픽은 쓰지 않아. 얇은 선(1px)과 면의 밝기 차이로만 구분하고, 모서리는 살짝 둥글어(4·8px). 큰 한글 제목은 굵고 자간을 좁혀서 단단하게 세우고, 나머지는 조용히 물러나 있어.",
+    "keyCharacteristics": [
+      "거의 검은 쿨톤 바탕 위 3단계 면 (페이지 < 작업대 < 손 닿는 곳)",
+      "로고 파랑은 면에만, 파란 글자는 밝힌 신호 파랑으로",
+      "그림자 없이 1px 선과 면 밝기로 깊이 표현",
+      "Pretendard 하나로 굵기만 바꿔 위계를 만든다",
+      "좌측 고정 사이드바 + 최대 1080px 본문"
+    ],
+    "rules": [
+      {
+        "name": "The Lamp Rule",
+        "body": "로고 파랑은 면에만 켠다. 파란 글자는 언제나 신호 파랑이다.",
+        "section": "colors"
+      },
+      {
+        "name": "The Token-Only Rule",
+        "body": "CSS에 색을 직접 적지 않는다. 전부 `styles/theme.css` 토큰을 쓰고, 새 글자/배경 조합은 `scripts/check-contrast.mjs`의 PAIRS에 추가한 뒤 `npm run check:contrast`를 통과시킨다.",
+        "section": "colors"
+      },
+      {
+        "name": "The Keep-All Rule",
+        "body": "한글 제목(h1–h3)은 `word-break: keep-all`로 어절 단위 줄바꿈. 글자 중간에서 끊지 않는다.",
+        "section": "typography"
+      },
+      {
+        "name": "The Weight Ladder Rule",
+        "body": "메인 타이틀·메뉴 700, 서브 타이틀 600, 본문 400, 부가 정보 400/300. 이 네 단계 밖의 굵기는 쓰지 않는다.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Bench Rule",
+        "body": "작업대는 바닥에 붙어 있다. 그림자로 띄우지 말고 밝기로 구분한다.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** 색은 `styles/theme.css` 토큰으로만 쓰고, 새 조합은 대비 검사(`npm run check:contrast`)를 통과시켜.",
+      "**Do** 로고 파랑은 버튼·칩·뱃지·배너 윗선 같은 면에만, 그 위 글자는 흰색.",
+      "**Do** 깊이는 면 밝기 한 단계와 1px 테두리 색 변화로 표현해.",
+      "**Do** 상태 전환은 0.15초(패널은 0.2초)로 짧게, `prefers-reduced-motion`이면 끄기.",
+      "**Do** 터치 대상은 최소 44px.",
+      "**Do** 로고 교체는 `lib/config/site.js`에서만."
+    ],
+    "donts": [
+      "**Don't** 로고 파랑을 검은 바탕 위 글자색으로 쓰지 마 (대비 2.87).",
+      "**Don't** 카드나 패널에 그림자를 넣지 마.",
+      "**Don't** CSS에 색 값을 직접 적지 마.",
+      "**Don't** 파란 빛(Blue Glow)을 글자 뒤 배경으로 쓰지 마."
+    ]
+  }
+}
