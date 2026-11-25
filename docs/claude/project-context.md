@@ -117,7 +117,7 @@ Projects(파트 필터·상세), 방명록(허니팟·쿨다운·IP 제한·삭�
 - 샘플 정리 (2026-11-12): sample-* 프로젝트 4개(+project_departments, project-covers의 sample-active.jpg, missing.jpg 값),
   방명록 테스트 글 2개, member-photos의 sample-member-a.jpg 삭제. 방명록은 지금 비어 있음(빈 상태 안내 문구가 보임).
 - 프로젝트 (2026-11-16): `first-project` "TeamWV 웹페이지" 1개. active + is_featured(홈 배너·대표 칸 둘 다),
-  표지 first_project_cover.png, 파트 디자인·개발(기획은 빠져 있음, 의도인지 사용자 확인 전), 만든 사람 윤태중·이휘성.
+  표지 first_project_cover.png, 파트 디자인·개발(기획은 사용자가 일부러 뺌, 2026-11-25 확인), 만든 사람 윤태중·이휘성.
 
 보안 감사 (2026-11-09, cloudflare security-audit 스킬 standard, 소스 검토만. 보고서: `~/security-audit-skill/Team_Verne/run-1/REPORT.md`):
 - 확정 0건(샌드박스 없어 실행 검증 불가), needs_validation 6건. 그중 4건은 커밋 0f30e21에서 고침:
@@ -140,7 +140,7 @@ Projects(파트 필터·상세), 방명록(허니팟·쿨다운·IP 제한·삭�
 - 의도적으로 남긴 것(검사기가 지적하지만 유지): 팀 소개 챕터 eyebrow, 홈 배너 2px 파란 윗선.
 - 남은 P3: 소식 본문 이미지 크기 미지정(지금 본문 이미지 0장이라 보류).
 - 확인 못 한 것: 실제 폰·Safari, 스크린리더 직접 사용.
-- 눈에 띈 것(코드 아님): 대표 프로젝트 표지 first_project_cover.png가 흰 배경 캡처라 어두운 화면에서 튐. 교체는 사용자 판단.
+- 대표 프로젝트 표지 first_project_cover.png: 3000×2250 흰 캔버스 왼쪽 위에 1901×903 캡처가 붙은 파일이라 흰 여백이 보였음(코드는 object-fit: cover로 정상, 2026-11-25 확인). 여백 잘라낸 1901×903 파일로 같은 이름 덮어씀(2026-11-25).
 
 다음 순서: **남은 내용 입력 → 배포**
 - 갤러리: 사진 추가는 `team-gallery` 버킷 업로드 + `gallery_photos` 등록. 샘플 3개(행·파일) 2026-11-16 삭제, 실제 사진 1장 있음.
