@@ -75,12 +75,13 @@ features/<기능>/ 기능별 코드 (layout, home, about, teams, projects, guest
   `submission_log`(IP는 HMAC 해시, 24시간 보관)
 - 공개 버킷: `project-covers`, `member-photos`, `news-images`, `team-gallery` (jpg/png/webp, 2MB, 쓰기 정책 없음)
 - 주요 CHECK: slug `^[a-z0-9-]+$`, 이미지 파일명 규칙, 글자 수 제한. 코드 검증 상수와 값을 맞춘다.
-- `docs/sql/` (번호 순서대로 SQL Editor에서 실행, 새 환경 만들 때 다시 실행. 현재 DB는 001~004 적용 확인 2026-11-16, 005 적용 2026-11-25: 함수·칸·테이블·인덱스, cron 2개 active·succeeded, anon RPC 실행 401):
+- `docs/sql/` (번호 순서대로 SQL Editor에서 실행, 새 환경 만들 때 다시 실행. 현재 DB는 001~004 적용 확인 2026-11-16, 005·006 적용 2026-11-25: 함수·칸·테이블·인덱스, cron 2개 active·succeeded, anon RPC 실행 401):
   - `001` `guestbook_reserve_delete_attempt` RPC + `guestbook_entries.delete_locked_until` (삭제 시도 원자 예약, 5회 → 15분 잠금)
   - `002` `submission_try_reserve` RPC + 인덱스 (IP 제한 확인·기록 원자화, 부작용 전에 호출)
   - `003` pg_cron: submission_log 24시간 정리(매시), cron.job_run_details 7일 정리
   - `004` `project_members` 테이블(project_id, member_id) + anon SELECT만. 프로젝트 상세에 "만든 사람" 표시. 코드가 같이 조회하므로 없으면 Projects 전체가 에러 안내로 보임
   - `005` `projects`에 `body_ko`/`body_en`(마크다운, 기본 '', 각 2만 자) + `started_on`/`ended_on`(date, 종료일은 시작일 이후). 코드가 같이 조회하므로 없으면 Projects 전체가 에러 안내
+  - `006` `sponsorship_inquiries.status`(new/in_progress/done, 기본 new). 대시보드에서만 바꿈, 코드는 안 씀. 사용법 `docs/manuals/sponsorship-inquiry-status.md`
   - RPC는 둘 다 anon/authenticated 실행 권한 회수, service_role만. 코드가 이 함수에 의존하므로 SQL 먼저, 배포 나중.
 
 ## 6. 환경변수 (.env.local, 절대 커밋 금지 · 채팅에 붙이지 않기)
@@ -158,5 +159,5 @@ Projects(파트 필터·상세), 방명록(허니팟·쿨다운·IP 제한·삭�
 - Supabase 무료 플랜은 오래 안 쓰면 정지됨. 정지 중엔 `*.supabase.co`가 DNS에서 안 풀려 `fetch failed`가 남 → 대시보드에서 Resume.
 
 미뤄둔 제안(사용자가 아직 고르지 않음):
-흰 로고 파일, 문의자 자동 확인 메일(도메인 필요), 문의 처리 상태 컬럼, 멤버 페이지네이션.
+흰 로고 파일(나중에), 멤버 페이지네이션. 문의자 자동 확인 메일은 배포 때 도메인 정하면서 진행(2026-11-25 결정).
 (입력칸 테두리 대비 강화는 2026-11-24 반영됨)
