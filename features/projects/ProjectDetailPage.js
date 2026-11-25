@@ -10,6 +10,8 @@ import CoverImage from "./CoverImage";
 import StatusBadge from "./StatusBadge";
 import DepartmentTags from "./DepartmentTags";
 import ProjectMembers from "./ProjectMembers";
+import ProjectPeriod from "./ProjectPeriod";
+import MarkdownBody from "@/lib/ui/MarkdownBody";
 import ProjectsMessage from "./ProjectsMessage";
 import styles from "./Projects.module.css";
 
@@ -37,6 +39,7 @@ export default async function ProjectDetailPage({ slug }) {
   if (!project) notFound();
 
   const coverUrl = getCoverUrl(project.cover_path);
+  const body = pickLocalized(project, "body", locale);
 
   return (
     <main className={styles.detail}>
@@ -51,8 +54,10 @@ export default async function ProjectDetailPage({ slug }) {
         <StatusBadge status={project.status} labels={labels} />
         <DepartmentTags departments={project.departments} locale={locale} label={labels.departmentsLabel} />
       </div>
+      <ProjectPeriod startedOn={project.started_on} endedOn={project.ended_on} locale={locale} label={labels.periodLabel} />
       <ProjectMembers members={project.members} locale={locale} label={labels.membersLabel} />
       <p className={styles.detailSummary}>{pickLocalized(project, "summary", locale)}</p>
+      {body && <MarkdownBody markdown={body} />}
     </main>
   );
 }

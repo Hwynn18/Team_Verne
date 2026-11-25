@@ -259,26 +259,6 @@
   overflow-wrap: anywhere;
 }
 
-.detailBody {
-  line-height: 1.8;
-  overflow-wrap: anywhere;
-}
-
-.detailBody p { margin: 0 0 16px; }
-.detailBody p:last-child { margin-bottom: 0; }
-.detailBody ul,
-.detailBody ol { margin: 0 0 16px; padding-left: 24px; }
-.detailBody a { color: var(--color-primary-strong); text-decoration: underline; }
-.detailBody strong { font-weight: 700; }
-
-.bodyImage {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  border-radius: var(--radius-md);
-  margin: 16px 0;
-}
-
 .message {
   margin: 0;
   padding: 20px;

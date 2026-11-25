@@ -219,6 +219,8 @@
   font-weight: 600;
 }
 
+.period { font-weight: 600; }
+
 .detailSummary {
   margin: 0;
   font-size: var(--text-lg);

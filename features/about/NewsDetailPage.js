@@ -6,7 +6,7 @@ import { formatDate } from "@/lib/i18n/formatDate";
 import { isValidSlug } from "@/lib/validation/slug";
 import { getNewsBySlug } from "./aboutQueries";
 import CategoryBadge from "./CategoryBadge";
-import NewsBody from "./NewsBody";
+import MarkdownBody from "@/lib/ui/MarkdownBody";
 import AboutMessage from "./AboutMessage";
 import styles from "./About.module.css";
 
@@ -43,7 +43,7 @@ export default async function NewsDetailPage({ slug }) {
         <time className={styles.newsDate} dateTime={item.published_at}>{formatDate(item.published_at, locale)}</time>
       </div>
       <h1 className={styles.detailTitle}>{pickLocalized(item, "title", locale)}</h1>
-      {body && <NewsBody markdown={body} />}
+      {body && <MarkdownBody markdown={body} />}
     </main>
   );
 }

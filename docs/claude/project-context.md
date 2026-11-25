@@ -75,11 +75,12 @@ features/<기능>/ 기능별 코드 (layout, home, about, teams, projects, guest
   `submission_log`(IP는 HMAC 해시, 24시간 보관)
 - 공개 버킷: `project-covers`, `member-photos`, `news-images`, `team-gallery` (jpg/png/webp, 2MB, 쓰기 정책 없음)
 - 주요 CHECK: slug `^[a-z0-9-]+$`, 이미지 파일명 규칙, 글자 수 제한. 코드 검증 상수와 값을 맞춘다.
-- `docs/sql/` (번호 순서대로 SQL Editor에서 실행, 새 환경 만들 때 다시 실행. 현재 DB는 001~004 적용 확인 2026-11-16: 함수·칸·테이블·인덱스, cron 2개 active·succeeded, anon RPC 실행 401):
+- `docs/sql/` (번호 순서대로 SQL Editor에서 실행, 새 환경 만들 때 다시 실행. 현재 DB는 001~004 적용 확인 2026-11-16, 005 적용 2026-11-25: 함수·칸·테이블·인덱스, cron 2개 active·succeeded, anon RPC 실행 401):
   - `001` `guestbook_reserve_delete_attempt` RPC + `guestbook_entries.delete_locked_until` (삭제 시도 원자 예약, 5회 → 15분 잠금)
   - `002` `submission_try_reserve` RPC + 인덱스 (IP 제한 확인·기록 원자화, 부작용 전에 호출)
   - `003` pg_cron: submission_log 24시간 정리(매시), cron.job_run_details 7일 정리
   - `004` `project_members` 테이블(project_id, member_id) + anon SELECT만. 프로젝트 상세에 "만든 사람" 표시. 코드가 같이 조회하므로 없으면 Projects 전체가 에러 안내로 보임
+  - `005` `projects`에 `body_ko`/`body_en`(마크다운, 기본 '', 각 2만 자) + `started_on`/`ended_on`(date, 종료일은 시작일 이후). 코드가 같이 조회하므로 없으면 Projects 전체가 에러 안내
   - RPC는 둘 다 anon/authenticated 실행 권한 회수, service_role만. 코드가 이 함수에 의존하므로 SQL 먼저, 배포 나중.
 
 ## 6. 환경변수 (.env.local, 절대 커밋 금지 · 채팅에 붙이지 않기)
@@ -102,7 +103,7 @@ git add .
 git diff --cached --name-only | grep -E '(^|/)(\.env\.local|node_modules)' || echo "OK: 민감 파일 없음"
 ```
 lint 경고 없음(소식 본문 이미지도 2026-11-25 next/image로 바꿈, 버킷 news-images를 IMAGE_BUCKETS에 추가).
-build는 dev 서버를 켠 채로도 성공하지만, 2026-11-24엔 build 도중 dev 서버가 꺼졌음 → 끝나면 `npm run dev` 다시.
+build는 dev 서버를 켠 채로도 성공하지만, 2026-11-24엔 build 도중 dev 서버가 꺼졌고 2026-11-25엔 dev 서버가 옛 코드로 계속 응답함(새 컬럼에서 "Missing localized field"). build 뒤 이상하면 dev 서버 재시작부터.
 
 ## 8. 진행 상황
 
@@ -150,11 +151,12 @@ Projects(파트 필터·상세), 방명록(허니팟·쿨다운·IP 제한·삭�
 - 프로젝트 추가: 표지 `project-covers` 업로드 → `projects` 행(status `active`/`completed`, is_featured, sort_order, cover_path는 파일명만)
   → `project_departments`(파트), `project_members`(만든 사람)에 연결 행. 진행 중 배너는 active 중 sort_order 가장 작은 1개,
   대표는 is_featured 최대 3개. 만든 사람은 파트 순서(기획→디자인→개발) 다음 멤버 순서로 표시되고, 멤버가 파트별 행이라 어느 행을 연결하느냐로 위치가 정해짐.
+  상세 본문은 `body_ko`/`body_en`(마크다운, 비우면 안 보임, 이미지는 `news-images` 버킷만), 기간은 `started_on`/`ended_on`(시작일 없으면 안 보임, 종료일 없으면 "시작일 ~").
 - 배포 때 확인: x-forwarded-for 신뢰 여부(IP 제한), 환경변수 7개 이관, allowedOrigins 비어 있는지,
   `docs/sql/` 적용 여부, HSTS는 첫 배포부터 2년 고정이니 http 전용 하위 도메인 없는지.
   배포 후 `/api/revalidate` 200 확인(로컬 프로덕션에서 원인 불명 500 한 번, 재빌드 후 재현 안 됨).
 - Supabase 무료 플랜은 오래 안 쓰면 정지됨. 정지 중엔 `*.supabase.co`가 DNS에서 안 풀려 `fetch failed`가 남 → 대시보드에서 Resume.
 
-미뤄둔 제안(사용자가 아직 고르지 않음): 프로젝트 상세 본문·기간,
+미뤄둔 제안(사용자가 아직 고르지 않음):
 흰 로고 파일, 문의자 자동 확인 메일(도메인 필요), 문의 처리 상태 컬럼, 멤버 페이지네이션.
 (입력칸 테두리 대비 강화는 2026-11-24 반영됨)

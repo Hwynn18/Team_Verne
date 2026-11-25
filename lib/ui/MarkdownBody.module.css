@@ -1,0 +1,19 @@
+.body {
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.body p { margin: 0 0 16px; }
+.body p:last-child { margin-bottom: 0; }
+.body ul,
+.body ol { margin: 0 0 16px; padding-left: 24px; }
+.body a { color: var(--color-primary-strong); text-decoration: underline; }
+.body strong { font-weight: 700; }
+
+.image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  margin: 16px 0;
+}
