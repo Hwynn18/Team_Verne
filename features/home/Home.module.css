@@ -50,8 +50,9 @@
   background: radial-gradient(ellipse at 100% 0%, var(--color-primary-glow), transparent 60%), var(--color-surface);
 }
 
+/* 표지 칸이 먼저 420px을 가져가면 글자 칸이 수십 px로 줄어서, 글자 칸 최소폭을 먼저 확보한다 */
 .bannerWithCover {
-  grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
+  grid-template-columns: minmax(280px, 1fr) minmax(0, 420px);
   align-items: center;
 }
 
@@ -205,6 +206,11 @@
   border-color: var(--color-danger);
 }
 
+/* 사이드바(240px)가 있는 폭에서 글자 280px + 표지 + 간격이 안 들어가면 표지를 아래로 */
+@media (max-width: 1023px) {
+  .bannerWithCover { grid-template-columns: minmax(0, 1fr); }
+}
+
 @media (max-width: 768px) {
   .home {
     padding: 24px 20px 56px;
@@ -215,8 +221,6 @@
     padding: 32px 24px;
     gap: 24px;
   }
-
-  .bannerWithCover { grid-template-columns: minmax(0, 1fr); }
 
   .updateItem {
     flex-direction: column;
