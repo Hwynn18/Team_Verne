@@ -1,3 +1,4 @@
+import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkBreaks from "remark-breaks";
@@ -21,7 +22,8 @@ function SafeImage({ src, alt }) {
     console.error("[NewsBody] blocked image src:", src);
     return null;
   }
-  return <img src={src} alt={alt ?? ""} className={styles.bodyImage} loading="lazy" />;
+  // 마크다운이라 원본 크기를 모른다. 16:9로 자리만 잡고, CSS height:auto가 로드 후 실제 비율로 맞춘다.
+  return <Image src={src} alt={alt ?? ""} width={1600} height={900} sizes="(max-width: 768px) 100vw, 780px" className={styles.bodyImage} />;
 }
 
 export default function NewsBody({ markdown }) {

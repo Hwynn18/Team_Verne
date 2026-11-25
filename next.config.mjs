@@ -1,5 +1,5 @@
-// features/projects/coverUrl.js, features/about/photoUrl.js, features/teams/galleryPhotoUrl.js 의 BUCKET 과 같은 값이어야 함
-const IMAGE_BUCKETS = ["project-covers", "member-photos", "team-gallery"];
+// features/projects/coverUrl.js, features/about/photoUrl.js, features/teams/galleryPhotoUrl.js 의 BUCKET, lib/storage/publicImage.js 의 ALLOWED_BODY_IMAGE_BUCKETS 와 같은 값이어야 함
+const IMAGE_BUCKETS = ["project-covers", "member-photos", "team-gallery", "news-images"];
 // npm run dev 기본 포트
 const DEV_PORT = 3000;
 
