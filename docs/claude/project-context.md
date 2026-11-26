@@ -158,7 +158,17 @@ Projects(파트 필터·상세), 방명록(허니팟·쿨다운·IP 제한·삭�
   - x-forwarded-for: Vercel이 덮어씀(문서 확인) → `getClientIpHash` 코드 그대로, 주석만 갱신. Vercel 앞에 프록시 두면 재검토.
   - allowedOrigins: production이면 자동 `[]`(코드 확인). 환경변수는 **첫 빌드 전에** 넣기(next.config가 SUPABASE_URL 없으면 빌드 실패).
   - 환경변수는 Production에만(Preview엔 안 넣음). 함수 지역은 Supabase 지역에 맞춤.
-  - 미확정: Hobby(무료) 약관이 비상업용만이라 스폰서 문의가 걸리는지 사용자 확인 필요(Hobby/Pro).
+  - 플랜: Hobby. 스폰서 문의는 유지(돈이 오가지 않음). 실제 후원금이 생기면 Pro 재검토.
+- **첫 배포 완료 (2026-11-26): https://teamwv.vercel.app/** (Vercel 프로젝트 `teamwv`, 팀 `hwynn18s-projects`, GitHub main push 시 자동 배포)
+  - 함수 지역 icn1(서울) 하나, Supabase ap-northeast-2와 같음. 응답 헤더 `X-Vercel-Id: icn1::icn1` 확인.
+  - 환경변수 7개 Production에만(Preview 제외). Supabase 연동(Vercel 마켓플레이스)은 추가 안 함.
+  - 확인 결과: 페이지 12개 200 + 없는 주소 404, KO/EN 전환, 이미지(표지·멤버·갤러리), 콘솔 에러 없음,
+    보안 헤더 6종(HSTS·CSP frame-ancestors·X-Frame-Options·nosniff·Referrer-Policy·Permissions-Policy),
+    `/api/revalidate` 시크릿 없음/틀림 401·GET 405·올바름 200, 배포 JS 청크 12개에 비밀값 4종 없음.
+  - 쓰기 테스트 통과: 스폰서 문의 1건(행 생성·status new·알림 메일 사용자 확인) → 테스트 행 삭제(기존 문의 2건 유지),
+    방명록 글쓰기·삭제(사용자 진행). submission_log에 sponsorship·guestbook-post·guestbook-delete 3건, IP 해시 64자
+    → **Vercel에서 x-forwarded-for 정상 동작 확인**.
+  - 남은 것: 도메인 구매·연결(그때 HSTS 하위 도메인 재점검) + 문의자 확인 메일.
 - 배포 때 확인: x-forwarded-for 신뢰 여부(IP 제한), 환경변수 7개 이관, allowedOrigins 비어 있는지,
   `docs/sql/` 적용 여부, HSTS는 첫 배포부터 2년 고정이니 http 전용 하위 도메인 없는지.
   배포 후 `/api/revalidate` 200 확인(로컬 프로덕션에서 원인 불명 500 한 번, 재빌드 후 재현 안 됨).

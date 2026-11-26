@@ -40,6 +40,8 @@ const SECURITY_HEADERS = [
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // 응답에 프레임워크 이름(X-Powered-By: Next.js)을 알리지 않는다
+  poweredByHeader: false,
   async headers() {
     return [{ source: "/:path*", headers: SECURITY_HEADERS }];
   },
