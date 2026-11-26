@@ -149,6 +149,8 @@ Projects(파트 필터·상세), 방명록(허니팟·쿨다운·IP 제한·삭�
 - 갤러리: 사진 추가는 `team-gallery` 버킷 업로드 + `gallery_photos` 등록. 샘플 3개(행·파일) 2026-11-16 삭제, 실제 사진 1장 있음.
 - 팀 소개(About > 팀 소개) 사진: Supabase `team-gallery` 버킷에 `about-1.jpg`(16:9), `mission-1.jpg`·`mission-2.jpg`(4:5) 업로드(DB 등록 없음, 배포 불필요). 같은 이름으로 교체하면 이미지 캐시 때문에 최대 4시간 늦게 바뀜.
   장수·이름 바꾸면 `features/about/IntroPage.js`의 `PHOTOS`만 수정. 없으면 회색 칸으로 보임.
+  → 3장 모두 업로드 완료(2026-11-26, mission-1·2는 1500×1875로 잘라서). 배포 사이트에서 표시 확인.
+  패럴랙스 때문에 사진이 칸보다 위아래 10%씩 크게 그려져 가장자리가 조금 잘려 보이는 건 의도.
 - 프로젝트 추가: 표지 `project-covers` 업로드 → `projects` 행(status `active`/`completed`, is_featured, sort_order, cover_path는 파일명만)
   → `project_departments`(파트), `project_members`(만든 사람)에 연결 행. 진행 중 배너는 active 중 sort_order 가장 작은 1개,
   대표는 is_featured 최대 3개. 만든 사람은 파트 순서(기획→디자인→개발) 다음 멤버 순서로 표시되고, 멤버가 파트별 행이라 어느 행을 연결하느냐로 위치가 정해짐.
