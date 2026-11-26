@@ -153,6 +153,12 @@ Projects(파트 필터·상세), 방명록(허니팟·쿨다운·IP 제한·삭�
   → `project_departments`(파트), `project_members`(만든 사람)에 연결 행. 진행 중 배너는 active 중 sort_order 가장 작은 1개,
   대표는 is_featured 최대 3개. 만든 사람은 파트 순서(기획→디자인→개발) 다음 멤버 순서로 표시되고, 멤버가 파트별 행이라 어느 행을 연결하느냐로 위치가 정해짐.
   상세 본문은 `body_ko`/`body_en`(마크다운, 비우면 안 보임, 이미지는 `news-images` 버킷만), 기간은 `started_on`/`ended_on`(시작일 없으면 안 보임, 종료일 없으면 "시작일 ~").
+- 배포 결정 (2026-11-26): **Vercel**, 먼저 `*.vercel.app` 무료 주소로 배포 → 도메인은 나중에 사서 연결(그때 문의자 확인 메일).
+  계획 파일: `~/.claude/plans/cosmic-questing-dewdrop-of-0b90b7de-4ae9-40b3-981a-4c82dcf8f73e.md`
+  - x-forwarded-for: Vercel이 덮어씀(문서 확인) → `getClientIpHash` 코드 그대로, 주석만 갱신. Vercel 앞에 프록시 두면 재검토.
+  - allowedOrigins: production이면 자동 `[]`(코드 확인). 환경변수는 **첫 빌드 전에** 넣기(next.config가 SUPABASE_URL 없으면 빌드 실패).
+  - 환경변수는 Production에만(Preview엔 안 넣음). 함수 지역은 Supabase 지역에 맞춤.
+  - 미확정: Hobby(무료) 약관이 비상업용만이라 스폰서 문의가 걸리는지 사용자 확인 필요(Hobby/Pro).
 - 배포 때 확인: x-forwarded-for 신뢰 여부(IP 제한), 환경변수 7개 이관, allowedOrigins 비어 있는지,
   `docs/sql/` 적용 여부, HSTS는 첫 배포부터 2년 고정이니 http 전용 하위 도메인 없는지.
   배포 후 `/api/revalidate` 200 확인(로컬 프로덕션에서 원인 불명 500 한 번, 재빌드 후 재현 안 됨).
